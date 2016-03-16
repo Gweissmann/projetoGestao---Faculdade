@@ -3,13 +3,13 @@ package modelo;
 
 
 public class MCadastroConta {
-    private String nome;
-    private String dataCadastro;
-    private String dataVencimento;
-    private Integer numeroParcelas;
-    private Float valor;
-    private Float jurosDia;
-    private Float jurosMes;
+    private String nome = "";
+    private String dataCadastro = "";
+    private String dataVencimento = "";
+    private Integer numeroParcelas = 0;
+    private double valor = 0.00;
+    private double jurosDia = 0.00;
+    private double jurosMes = 0.00;
     
     public Integer getNumeroParcelas() {
         return numeroParcelas;
@@ -44,27 +44,27 @@ public class MCadastroConta {
         this.dataVencimento = dataVencimento;
     }
 
-    public Float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
-    public Float getJurosDia() {
+    public double getJurosDia() {
         return jurosDia;
     }
 
-    public void setJurosDia(Float jurosDia) {
+    public void setJurosDia(double jurosDia) {
         this.jurosDia = jurosDia;
     }
 
-    public Float getJurosMes() {
+    public double getJurosMes() {
         return jurosMes;
     }
 
-    public void setJurosMes(Float jurosMes) {
+    public void setJurosMes(double jurosMes) {
         this.jurosMes = jurosMes;
     }
     

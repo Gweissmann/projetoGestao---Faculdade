@@ -2,8 +2,8 @@ package modelo;
 
 
 public class MLoginUsuario {
-     private String Nome;
-     private String Senha;
+     private String Nome = "";
+     private String Senha = "";
 
     public String getNome() {
         return Nome;
