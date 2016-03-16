@@ -23,7 +23,9 @@ public class MLoginUsuario {
      
 
    
+    public void logarUsuario(String nome,String senha){
 
+    }
 
 
 }
