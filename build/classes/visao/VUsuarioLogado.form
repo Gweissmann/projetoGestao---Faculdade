@@ -28,7 +28,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="bntEditarUsurio" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="btnEditarUsurio" min="-2" pref="51" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
@@ -40,13 +40,13 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jCadastrar" min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="btnCadastrar" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="jEditar" min="-2" pref="99" max="-2" attributes="0"/>
+              <Component id="btnEditar" min="-2" pref="99" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="jExcluir" min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="btnExcluir" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="jRelatorio" min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="btnRelatorio" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -57,7 +57,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="bntEditarUsurio" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="btnEditarUsurio" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -74,10 +74,10 @@
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jEditar" max="32767" attributes="0"/>
-                  <Component id="jCadastrar" max="32767" attributes="0"/>
-                  <Component id="jExcluir" max="32767" attributes="0"/>
-                  <Component id="jRelatorio" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="btnEditar" max="32767" attributes="0"/>
+                  <Component id="btnCadastrar" max="32767" attributes="0"/>
+                  <Component id="btnExcluir" max="32767" attributes="0"/>
+                  <Component id="btnRelatorio" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="74" max="32767" attributes="0"/>
           </Group>
@@ -85,7 +85,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="bntEditarUsurio">
+    <Component class="javax.swing.JButton" name="btnEditarUsurio">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagens/social.png"/>
@@ -295,22 +295,22 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jCadastrar">
+    <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jEditar">
+    <Component class="javax.swing.JButton" name="btnEditar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jExcluir">
+    <Component class="javax.swing.JButton" name="btnExcluir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jRelatorio">
+    <Component class="javax.swing.JButton" name="btnRelatorio">
       <Properties>
         <Property name="text" type="java.lang.String" value="Rel&#xe1;torio"/>
       </Properties>

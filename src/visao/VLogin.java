@@ -32,8 +32,8 @@ public class VLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        bntEntrar = new javax.swing.JButton();
-        bntCancelar = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblCadastro = new javax.swing.JLabel();
         lblRecuperaSenha = new javax.swing.JLabel();
 
@@ -52,14 +52,14 @@ public class VLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha:");
 
-        bntEntrar.setText("Entrar");
-        bntEntrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntEntrarActionPerformed(evt);
+                btnEntrarActionPerformed(evt);
             }
         });
 
-        bntCancelar.setText("Cancelar");
+        btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -71,9 +71,9 @@ public class VLogin extends javax.swing.JFrame {
                     .addComponent(txtLogin)
                     .addComponent(txtSenha)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(bntEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(bntCancelar))
+                        .addComponent(btnCancelar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -94,8 +94,8 @@ public class VLogin extends javax.swing.JFrame {
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bntEntrar)
-                    .addComponent(bntCancelar))
+                    .addComponent(btnEntrar)
+                    .addComponent(btnCancelar))
                 .addContainerGap())
         );
 
@@ -142,11 +142,11 @@ public class VLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaActionPerformed
 
-    private void bntEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEntrarActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         this.setVisible(false);
         VUsuarioLogado usuario = new VUsuarioLogado();
         usuario.setVisible(true);
-    }//GEN-LAST:event_bntEntrarActionPerformed
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,8 +187,8 @@ public class VLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntCancelar;
-    private javax.swing.JButton bntEntrar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
