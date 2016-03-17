@@ -3,6 +3,7 @@ package modelo;
 
 
 public class MCadastroConta {
+    private String tipoTitulo = "";
     private String nome = "";
     private String dataCadastro = "";
     private String dataVencimento = "";
@@ -10,6 +11,18 @@ public class MCadastroConta {
     private double valor = 0.00;
     private double jurosDia = 0.00;
     private double jurosMes = 0.00;
+    
+    
+    
+    
+    
+    public String getTipoTitulo() {
+        return tipoTitulo;
+    }
+    
+    public void setTipoTitulo(String tipoTitulo) {
+        this.tipoTitulo = tipoTitulo;
+    }
     
     public Integer getNumeroParcelas() {
         return numeroParcelas;

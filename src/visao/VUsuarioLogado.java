@@ -36,10 +36,10 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         lbl = new javax.swing.JLabel();
         lblSaldoFinal = new javax.swing.JLabel();
-        btnCadastrar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
+        btnCadastrarTitulo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,13 +52,13 @@ public class VUsuarioLogado extends javax.swing.JFrame {
 
         tblContas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome da Conta", "Valor", "Numero de Parcelas", "Data de Cadastramento", "Data de vencimento", "Valor Juros/mes", "Valoe do juros/dia"
+                "Tipo do Título", "Descrição do Tiítulo", "Valor", "Numero de Parcelas", "Data de Cadastramento", "Data de vencimento", "Valor Juros/mes", "Valor do juros/dia"
             }
         ));
         tblContas.setGridColor(new java.awt.Color(0, 0, 0));
@@ -88,7 +88,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Salario Bruto");
+        jLabel3.setText("Sálario Liquído");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -154,18 +154,18 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
-
         btnEditar.setText("Editar");
 
         btnExcluir.setText("Excluir");
 
         btnRelatorio.setText("Relátorio");
+
+        btnCadastrarTitulo.setText("Cadastrar");
+        btnCadastrarTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarTituloActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,8 +185,8 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addComponent(btnCadastrarTitulo)
+                .addGap(46, 46, 46)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,38 +213,42 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btnCadastrarTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTituloActionPerformed
+        VCadastroConta cadastrarTitulo = new VCadastroConta();
+        cadastrarTitulo.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarTituloActionPerformed
     //muda opacidade REVER CODIGO DE OPACIDADE
     public void mudaOpacidade(boolean opacidade){
         this.setOpacity(0.5f);
         tblContas.setOpaque(opacidade);
-        btnCadastrar.setOpaque(opacidade);
+        btnCadastrarTitulo.setOpaque(opacidade);
         btnEditar.setOpaque(opacidade);
         btnEditarUsurio.setOpaque(opacidade);
         btnExcluir.setOpaque(opacidade);
         btnRelatorio.setOpaque(opacidade);
-        btnCadastrar.setOpaque(opacidade);
+        btnCadastrarTitulo.setOpaque(opacidade);
     }
     
     
     
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
         
-        VCadastroConta cadastrarConta= new VCadastroConta();
-        cadastrarConta.setVisible(true);
+       
        //criar metodo para controlar opacidade dos forms
         
         
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+    }                                            
 
     /**
      * @param args the command line arguments
@@ -283,7 +287,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnCadastrarTitulo;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEditarUsurio;
     private javax.swing.JButton btnExcluir;
