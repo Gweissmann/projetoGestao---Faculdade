@@ -58,13 +58,13 @@ public class VUsuarioLogado extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome da Conta", "Valor", "Numero de Parcelas", "Data de Cadastramento", "Data de vencimento", "Valor Juros/mes", "Valoe do juros/dia"
+                "Tipo do Título", "Descrição do Tiítulo", "Valor", "Numero de Parcelas", "Data de Cadastramento", "Data de vencimento", "Valor Juros/mes", "Valor do juros/dia"
             }
         ));
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
@@ -94,7 +94,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Salario Bruto");
+        jLabel3.setText("Sálario Liquído");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -161,6 +161,11 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         );
 
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
 
@@ -223,6 +228,12 @@ public class VUsuarioLogado extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        this.setVisible(false);
+        VCadastroTitulo cadastro = new VCadastroTitulo();
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
