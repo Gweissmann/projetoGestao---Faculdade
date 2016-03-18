@@ -9,7 +9,7 @@ package modelo;
  *
  * @author Bruno
  */
-public class MContaUsuario {
+public class MCadastroUsuario {
     private String nome = "";
     private String email = "";
     private String senha  = "";

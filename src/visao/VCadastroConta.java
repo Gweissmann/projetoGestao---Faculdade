@@ -1,19 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package visao;
 
-/**
- *
- * @author Bruno
- */
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+
 public class VCadastroConta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VCadastroConta
-     */
+    public JTextField getTxtNomeTitulo() {
+        return txtNomeTitulo;
+    }
+
+    public void setTxtNomeTitulo(String txtNomeTitulo) {
+        this.txtNomeTitulo.setText(txtNomeTitulo);
+    }
+
+    public JTextField getTxtNumeroParcelas() {
+        return txtNumeroParcelas;
+    }
+
+    public void setTxtNumeroParcelas(String txtNumeroParcelas) {
+        this.txtNumeroParcelas.setText(txtNumeroParcelas);
+    }
+
+    public JTextField getTxtValorJuros() {
+        return txtValorJuros;
+    }
+
+    public void setTxtValorJuros(String txtValorJuros) {
+        this.txtValorJuros.setText(txtValorJuros);
+    }
+
+    public JTextField getTxtValorTitulo() {
+        return txtValorTitulo;
+    }
+
+    public void setTxtValorTitulo(String txtValorTitulo) {
+        this.txtValorTitulo.setText(txtValorTitulo);
+    }
+
+    public JFormattedTextField getFtfDataCadastramento() {
+        return ftfDataCadastramento;
+    }
+
+    public void setFtfDataCadastramento(String ftfDataCadastramento) {
+        this.ftfDataCadastramento.setText("");
+    }
+
+    public JFormattedTextField getFtfDataVencimento() {
+        return ftfDataVencimento;
+    }
+
+    public void setFtfDataVencimento(String ftfDataVencimento) {
+        this.ftfDataVencimento.setText("");
+    }
+
     public VCadastroConta() {
         initComponents();
     }
@@ -45,7 +84,7 @@ public class VCadastroConta extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Titulo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -169,8 +208,18 @@ public class VCadastroConta extends javax.swing.JFrame {
         );
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,13 +257,24 @@ public class VCadastroConta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeTituloActionPerformed
 
     private void ftfDataCadastramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfDataCadastramentoActionPerformed
-        
-       ftfDataCadastramento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+
+        ftfDataCadastramento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
     }//GEN-LAST:event_ftfDataCadastramentoActionPerformed
 
     private void cbTipoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoContaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTipoContaActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+        this.dispose();
+
+
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+            
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments

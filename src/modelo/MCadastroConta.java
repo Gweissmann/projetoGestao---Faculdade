@@ -2,7 +2,7 @@
 package modelo;
 
 
-public class MCadastroCliente {
+public class MCadastroConta {
     private String tipoTitulo = "";
     private String nome = "";
     private String dataCadastro = "";

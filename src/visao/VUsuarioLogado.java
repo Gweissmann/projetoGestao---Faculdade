@@ -10,7 +10,7 @@ package visao;
  * @author Bruno
  */
 public class VUsuarioLogado extends javax.swing.JFrame {
-
+    VCadastroConta cadastro = new VCadastroConta();
     
     public VUsuarioLogado() {
         initComponents();
@@ -225,13 +225,20 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTituloActionPerformed
-        VCadastroConta cadastrarTitulo = new VCadastroConta();
-        cadastrarTitulo.setVisible(true);
+         cadastro.setTxtNumeroParcelas("");
+         cadastro.setTxtNomeTitulo("");
+         cadastro.setTxtValorJuros("");
+         cadastro.setTxtValorTitulo("");
+         cadastro.setFtfDataCadastramento("");
+         cadastro.setFtfDataVencimento("");
+         cadastro.setVisible(true);
+        //mudaOpacidade(true);
     }//GEN-LAST:event_btnCadastrarTituloActionPerformed
     //muda opacidade REVER CODIGO DE OPACIDADE
     public void mudaOpacidade(boolean opacidade){
         this.setOpacity(0.5f);
-        tblContas.setOpaque(opacidade);
+        this.setEnabled(false);
+        tblContas.setEnabled(false);
         btnCadastrarTitulo.setOpaque(opacidade);
         btnEditar.setOpaque(opacidade);
         btnEditarUsurio.setOpaque(opacidade);

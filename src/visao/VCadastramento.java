@@ -5,7 +5,10 @@
  */
 package visao;
 
-import modelo.MContaUsuario;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import modelo.MCadastroUsuario;
 
 /**
  *
@@ -13,13 +16,55 @@ import modelo.MContaUsuario;
  */
 public class VCadastramento extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VCadastramento
-     */
+    MCadastroUsuario Usuario = new MCadastroUsuario();
+
+    public JTextField getTxtConfirmarSenha() {
+        return txtConfirmarSenha;
+    }
+
+    public void setTxtConfirmarSenha(String txtConfirmarSenha) {
+        this.txtConfirmarSenha.setText(txtConfirmarSenha);
+    }
+
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public void setTxtEmail(String txtEmail) {
+        this.txtEmail.setText(txtEmail);
+    }
+
+    public JTextField getTxtNomeUsuario() {
+        return txtNomeUsuario;
+    }
+
+    public void setTxtNomeUsuario(String txtNomeUsuario) {
+        this.txtNomeUsuario.setText(txtNomeUsuario);
+    }
+
+    public JTextField getTxtSenha() {
+        return txtSenha;
+    }
+
+    public void setTxtSenha(String txtSenha) {
+        this.txtSenha.setText(txtSenha);
+    }
+
+    public JLabel getLblSenhaIncorreta() {
+        return lblSenhaIncorreta;
+    }
+
+    public void setLblSenhaIncorreta(String lblSenhaIncorreta) {
+        this.lblSenhaIncorreta.setText(lblSenhaIncorreta);
+    }
+
+    public void setSenhaIncorreta(boolean visivel) {
+        this.lblSenhaIncorreta.setVisible(visivel);
+    }
+
     public VCadastramento() {
         initComponents();
-        lblSenhaIncorreta.setVisible(false);
-        
+
     }
 
     /**
@@ -125,6 +170,11 @@ public class VCadastramento extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,23 +217,27 @@ public class VCadastramento extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         //verificaçao de senha
-        
+
         String senha = txtSenha.getText();
+        //JOptionPane.showMessageDialog(null,senha);
         int comp = senha.compareTo(txtConfirmarSenha.getText());
-        
-        if(comp == 0){
-            MContaUsuario Usuario = new MContaUsuario();
+
+        if (comp == 0) {
+
             Usuario.setSenha(txtSenha.getText());
             lblSenhaIncorreta.setVisible(false);
-            
-        }else{
+
+        } else {
             lblSenhaIncorreta.setVisible(true);
-            
+
         }
-        
-            
-        
+
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,7 +270,7 @@ public class VCadastramento extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VCadastramento().setVisible(true);
-                
+
             }
         });
     }
