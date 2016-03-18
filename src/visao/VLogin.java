@@ -174,7 +174,8 @@ public class VLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCadastroMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.setVisible(false);
+        System.exit(0);
+        //this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
    
