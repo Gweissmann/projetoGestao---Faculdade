@@ -14,7 +14,7 @@ import java.awt.Point;
  * @author Bruno
  */
 public class VLogin extends javax.swing.JFrame {
-
+      VCadastramento cadastroUsuario = new VCadastramento();
     /**
      * Creates new form Calculadora
      */
@@ -65,6 +65,11 @@ public class VLogin extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -160,11 +165,27 @@ public class VLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
+<<<<<<< HEAD
        this.setVisible(false);
         VCadastroUsuario cadastroUsuario = new VCadastroUsuario();
         cadastroUsuario.setVisible(true);
     }//GEN-LAST:event_lblCadastroMouseClicked
 
+=======
+        cadastroUsuario.setTxtEmail("");
+        cadastroUsuario.setTxtNomeUsuario("");
+        cadastroUsuario.setTxtSenha("");
+        cadastroUsuario.setTxtConfirmarSenha("");
+        cadastroUsuario.setVisible(true);
+        cadastroUsuario.setSenhaIncorreta(false);
+    }//GEN-LAST:event_lblCadastroMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        System.exit(0);
+        //this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+>>>>>>> 41b8212b97a6001e4b9727e12d0db992f2268b16
    
     public static void main(String args[]) {
         
