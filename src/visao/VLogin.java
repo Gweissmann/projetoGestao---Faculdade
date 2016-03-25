@@ -107,6 +107,11 @@ public class VLogin extends javax.swing.JFrame {
         lblCadastro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCadastro.setForeground(new java.awt.Color(51, 51, 255));
         lblCadastro.setText("Cadastre-se");
+        lblCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCadastroMouseClicked(evt);
+            }
+        });
 
         lblRecuperaSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblRecuperaSenha.setForeground(new java.awt.Color(51, 51, 255));
@@ -153,6 +158,12 @@ public class VLogin extends javax.swing.JFrame {
         VUsuarioLogado usuariolLogado = new VUsuarioLogado();
         usuariolLogado.setVisible(true);
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
+       this.setVisible(false);
+        VCadastroUsuario cadastroUsuario = new VCadastroUsuario();
+        cadastroUsuario.setVisible(true);
+    }//GEN-LAST:event_lblCadastroMouseClicked
 
    
     public static void main(String args[]) {
