@@ -165,13 +165,6 @@ public class VLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
-<<<<<<< HEAD
-       this.setVisible(false);
-        VCadastroUsuario cadastroUsuario = new VCadastroUsuario();
-        cadastroUsuario.setVisible(true);
-    }//GEN-LAST:event_lblCadastroMouseClicked
-
-=======
         cadastroUsuario.setTxtEmail("");
         cadastroUsuario.setTxtNomeUsuario("");
         cadastroUsuario.setTxtSenha("");
@@ -185,7 +178,6 @@ public class VLogin extends javax.swing.JFrame {
         //this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
->>>>>>> 41b8212b97a6001e4b9727e12d0db992f2268b16
    
     public static void main(String args[]) {
         
