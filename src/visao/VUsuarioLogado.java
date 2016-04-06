@@ -65,15 +65,24 @@ public class VUsuarioLogado extends javax.swing.JFrame {
 
         tblContas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tipo do Título", "Descrição do Tiítulo", "Valor", "Numero de Parcelas", "Data de Cadastramento", "Data de vencimento", "Valor Juros/mes", "Valor do juros/dia"
+                "", "Tipo do Título", "Descrição do Tiítulo", "Valor", "Numero de Parcelas", "Data de Cadastramento", "Data de vencimento", "Valor Juros/mes", "Valor do juros/dia"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tblContas.setGridColor(new java.awt.Color(0, 0, 0));
         tblContas.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jScrollPane1.setViewportView(tblContas);
@@ -237,7 +246,10 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+=======
+>>>>>>> fc5ec68361f5d6a180cc79eaf14f001abfc3fcde
                         .addComponent(jLabel2)
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
@@ -353,6 +365,14 @@ public class VUsuarioLogado extends javax.swing.JFrame {
             @Override
             public void run() {
                 new VUsuarioLogado().setVisible(true);
+               
+                
+                
+                
+                
+                
+                
+                
             }
         });
     }

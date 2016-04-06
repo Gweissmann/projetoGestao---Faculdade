@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/GWEISSMANN/Desktop/Projeto/src/visao/VUsuarioLogado.java</file>
             <file>file:/C:/Users/GWEISSMANN/Desktop/Projeto/src/modelo/MCadastroConta.java</file>
             <file>file:/C:/Users/GWEISSMANN/Desktop/Projeto/src/modelo/MCadastroUsuario.java</file>
@@ -10,6 +11,12 @@
             <file>file:/C:/Users/GWEISSMANN/Desktop/Projeto/src/visao/VLogin.java</file>
             <file>file:/C:/Users/GWEISSMANN/Desktop/Projeto/src/visao/VCadastroConta.java</file>
             <file>file:/C:/Users/GWEISSMANN/Desktop/Projeto/src/visao/VCadastramento.java</file>
+=======
+            <file>file:/C:/Users/Aluno/Desktop/projetogestao-projeto_gestao_economia-41b8212b97a6/src/visao/VLogin.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/projetogestao-projeto_gestao_economia-41b8212b97a6/src/visao/VCadastroConta.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/projetogestao-projeto_gestao_economia-41b8212b97a6/src/visao/VCadastramento.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/projetogestao-projeto_gestao_economia-41b8212b97a6/src/visao/VUsuarioLogado.java</file>
+>>>>>>> fc5ec68361f5d6a180cc79eaf14f001abfc3fcde
         </group>
     </open-files>
 </project-private>

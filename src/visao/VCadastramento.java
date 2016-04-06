@@ -8,7 +8,7 @@ package visao;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import modelo.MCadastroUsuario;
+import modelo.MUsuario;
 
 /**
  *
@@ -16,7 +16,7 @@ import modelo.MCadastroUsuario;
  */
 public class VCadastramento extends javax.swing.JFrame {
 
-    MCadastroUsuario Usuario = new MCadastroUsuario();
+    MUsuario Usuario = new MUsuario();
 
     public JTextField getTxtConfirmarSenha() {
         return txtConfirmarSenha;
