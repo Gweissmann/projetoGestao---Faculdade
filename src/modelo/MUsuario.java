@@ -9,11 +9,14 @@ package modelo;
  *
  * @author Bruno
  */
-public class MCadastroUsuario {
+public class MUsuario {
     private String nome = "";
     private String email = "";
     private String senha  = "";
     private String confirmasenha = "";
+    private double salariomensal = 0.00;
+    private double rendaextra = 0.00;
+    
 
      public String getNome() {
         return nome;
@@ -46,16 +49,28 @@ public class MCadastroUsuario {
     public void setConfirmasenha(String confirmasenha) {
         this.confirmasenha = confirmasenha;
     }
-
-   
-   
-
+    
+    public void setSalarioMensal(double salariomensal){
+        this.salariomensal = salariomensal;
+    }
+    
+    public double getSalarioMensal(){
+        return salariomensal;
+    }
+    
+    public void setRendaExtra(double rendaextra){
+        this.rendaextra = rendaextra;
+    }
+    
+    public double getRendaExtra(){
+        return rendaextra;
+    }
+    
+    public boolean loginUsuario(String email, String senha){
+        return false;
+    }
     
     
-    
-    
-    
-    
-    
-    
+    public void cadastroUsuario(){
+    }
 }
