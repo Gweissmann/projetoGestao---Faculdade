@@ -24,11 +24,13 @@ public class ControlaUsuario {
             e.printStackTrace();
         }
     }
-
+    //classe de adicao de usuario
     public void adicionarUsuario(MUsuario usuario) throws SQLException {
         criarConexao();
         if (con != null) {
+            //parametros do banco de dados
             PreparedStatement insere = con.prepareStatement("insert into usuario(nome,email,senha,confirmacaoSenha,salarioMensal,rendaExtra) values (?,?,?,?,?,?)");
+            //pega valores do metodo de alimentaçao e insere no banco
             insere.setString(1,usuario.getNome());
             insere.setString(2,usuario.getEmail());
             insere.setString(3,usuario.getSenha());

@@ -31,6 +31,7 @@ public class ControlaContas {
         criarConexao();
         if (con != null) {
             PreparedStatement insere = con.prepareStatement("insert into cadastroConta(tipoTitulo,nome,dataCadastro,dataVencimento,numeroParcelas,valor) values (?,?,?,?,?,?)");
+            //pega valores do metodo de alimentaçao e insere no banco
             insere.setString(1,conta.getTipoTitulo());
             insere.setString(2,conta.getNome());
             insere.setString(3,conta.getDataCadastro());

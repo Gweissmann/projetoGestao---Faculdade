@@ -49,23 +49,6 @@ public class MUsuario {
     public void setConfirmasenha(String confirmasenha) {
         this.confirmasenha = confirmasenha;
     }
-<<<<<<< HEAD:src/modelo/MUsuario.java
-    
-    public void setSalarioMensal(double salariomensal){
-        this.salariomensal = salariomensal;
-    }
-    
-    public double getSalarioMensal(){
-        return salariomensal;
-    }
-    
-    public void setRendaExtra(double rendaextra){
-        this.rendaextra = rendaextra;
-    }
-    
-    public double getRendaExtra(){
-        return rendaextra;
-=======
     
     public void setSalarioMensal(double salariomensal){
         this.salariomensal = salariomensal;
@@ -85,17 +68,9 @@ public class MUsuario {
     
     public boolean loginUsuario(String email, String senha){
         return false;
->>>>>>> projetoGestao:src/modelo/MUsuario.java
     }
     
-    public boolean loginUsuario(String email, String senha){
-        return false;
-    }
-    
-<<<<<<< HEAD:src/modelo/MUsuario.java
-    //classe que sera alimentada antes de ir para o banco 
-=======
->>>>>>> projetoGestao:src/modelo/MUsuario.java
+    //classe que é alimentada antes da inserçao no banco de dados
     public void cadastroUsuario(String nome,String email,String senha,String confirmaSenha,double salarioMensal,double rendaExtra){
         setNome(nome);
         setEmail(email);
