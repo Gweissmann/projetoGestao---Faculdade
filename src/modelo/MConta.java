@@ -2,7 +2,7 @@
 package modelo;
 
 
-public class MCadastroConta {
+public class MConta {
     private String tipoTitulo = "";
     private String nome = "";
     private String dataCadastro = "";
@@ -80,5 +80,17 @@ public class MCadastroConta {
     public void setJurosMes(double jurosMes) {
         this.jurosMes = jurosMes;
     }
+    //classe que sera alimentada antes de ir para o banco 
+    public void cadastraConta(String Tipo,String nome,String dataCadastro,String dataVencimento,int numeroParcelas,double valor){
+        setTipoTitulo(tipoTitulo);
+        setNome(nome);
+        setDataCadastro(dataCadastro);
+        setDataVencimento(dataVencimento);
+        setNumeroParcelas(numeroParcelas);
+        setValor(valor);
+        setJurosDia(jurosDia);
+        setJurosMes(jurosMes);
+    }
+    
     
 }

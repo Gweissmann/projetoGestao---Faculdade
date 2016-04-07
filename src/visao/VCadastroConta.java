@@ -1,20 +1,35 @@
 package visao;
 
+import controle.ControlaContas;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
+import modelo.MConta;
 
 public class VCadastroConta extends javax.swing.JFrame {
+    MConta conta = new MConta();
+    ControlaContas adicionaConta = new ControlaContas();
+    public String getTxtNomeTitulo() {
+        return txtNomeTitulo.getText();
+    }
 
-    public JTextField getTxtNomeTitulo() {
-        return txtNomeTitulo;
+    public String getCbTipoConta() {
+        return cbTipoConta.getSelectedItem().toString();
+    }
+
+    public void setCbTipoConta(JComboBox<String> cbTipoConta) {
+        this.cbTipoConta = cbTipoConta;
     }
 
     public void setTxtNomeTitulo(String txtNomeTitulo) {
         this.txtNomeTitulo.setText(txtNomeTitulo);
     }
 
-    public JTextField getTxtNumeroParcelas() {
-        return txtNumeroParcelas;
+    public String getTxtNumeroParcelas() {
+        return txtNumeroParcelas.getText();
     }
 
     public void setTxtNumeroParcelas(String txtNumeroParcelas) {
@@ -29,24 +44,24 @@ public class VCadastroConta extends javax.swing.JFrame {
         this.txtValorJuros.setText(txtValorJuros);
     }
 
-    public JTextField getTxtValorTitulo() {
-        return txtValorTitulo;
+    public String getTxtValorTitulo() {
+        return txtValorTitulo.getText().toString();
     }
 
     public void setTxtValorTitulo(String txtValorTitulo) {
         this.txtValorTitulo.setText(txtValorTitulo);
     }
 
-    public JFormattedTextField getFtfDataCadastramento() {
-        return ftfDataCadastramento;
+    public String getFtfDataCadastramento() {
+        return ftfDataCadastramento.getText();
     }
 
     public void setFtfDataCadastramento(String ftfDataCadastramento) {
         this.ftfDataCadastramento.setText("");
     }
 
-    public JFormattedTextField getFtfDataVencimento() {
-        return ftfDataVencimento;
+    public String getFtfDataVencimento() {
+        return ftfDataVencimento.getText();
     }
 
     public void setFtfDataVencimento(String ftfDataVencimento) {
@@ -69,7 +84,6 @@ public class VCadastroConta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNomeTitulo = new javax.swing.JTextField();
-        ftfDataCadastramento = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtValorTitulo = new javax.swing.JTextField();
@@ -81,6 +95,7 @@ public class VCadastroConta extends javax.swing.JFrame {
         txtNumeroParcelas = new javax.swing.JTextField();
         cbTipoConta = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        ftfDataCadastramento = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
@@ -96,19 +111,17 @@ public class VCadastroConta extends javax.swing.JFrame {
             }
         });
 
-        ftfDataCadastramento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
-        ftfDataCadastramento.setToolTipText("");
-        ftfDataCadastramento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftfDataCadastramentoActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Data de cadastramento");
 
         jLabel3.setText("Valor");
 
         jLabel4.setText("Data devencimento");
+
+        ftfDataVencimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftfDataVencimentoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Valor do Juros");
 
@@ -157,9 +170,9 @@ public class VCadastroConta extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(txtValorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(ftfDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ftfDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -195,7 +208,7 @@ public class VCadastroConta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNumeroParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,7 +216,7 @@ public class VCadastroConta extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftfDataCadastramento)))
+                        .addComponent(ftfDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -256,11 +269,6 @@ public class VCadastroConta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeTituloActionPerformed
 
-    private void ftfDataCadastramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfDataCadastramentoActionPerformed
-
-        ftfDataCadastramento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-    }//GEN-LAST:event_ftfDataCadastramentoActionPerformed
-
     private void cbTipoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoContaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTipoContaActionPerformed
@@ -272,9 +280,28 @@ public class VCadastroConta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-            
+
+        //Falta pegar valores da combobox
+        String tipoConta = cbTipoConta.getSelectedItem().toString();
+        int numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
+        double valorTitulo = Double.parseDouble(getTxtValorTitulo());
+
+        conta.cadastraConta(tipoConta, getTxtNomeTitulo(), getFtfDataCadastramento(), getFtfDataVencimento(), numeroParcelas, valorTitulo);
+        
+        try {
+            adicionaConta.adicionarConta(conta);
+        } catch (SQLException ex) {
+            Logger.getLogger(VCadastroConta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void ftfDataVencimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfDataVencimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftfDataVencimentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,7 +342,7 @@ public class VCadastroConta extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> cbTipoConta;
-    private javax.swing.JFormattedTextField ftfDataCadastramento;
+    private javax.swing.JTextField ftfDataCadastramento;
     private javax.swing.JFormattedTextField ftfDataVencimento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
