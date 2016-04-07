@@ -29,6 +29,7 @@ public class ControlaUsuario {
         criarConexao();
         if (con != null) {
             PreparedStatement insere = con.prepareStatement("insert into usuario(nome,email,senha,confirmacaoSenha,salarioMensal,rendaExtra) values (?,?,?,?,?,?)");
+             //alimenta metodo de inserir usuario
             insere.setString(1,usuario.getNome());
             insere.setString(2,usuario.getEmail());
             insere.setString(3,usuario.getSenha());

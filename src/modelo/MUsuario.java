@@ -70,7 +70,7 @@ public class MUsuario {
         return false;
     }
     
-    
+    //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
     public void cadastroUsuario(String nome,String email,String senha,String confirmaSenha,double salarioMensal,double rendaExtra){
         setNome(nome);
         setEmail(email);

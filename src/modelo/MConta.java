@@ -80,7 +80,7 @@ public class MConta {
     public void setJurosMes(double jurosMes) {
         this.jurosMes = jurosMes;
     }
-    
+    //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
     public void cadastraConta(String Tipo,String nome,String dataCadastro,String dataVencimento,int numeroParcelas,double valor){
         setTipoTitulo(tipoTitulo);
         setNome(nome);
