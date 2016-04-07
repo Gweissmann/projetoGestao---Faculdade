@@ -93,4 +93,16 @@ public class MConta {
     }
     
     
+    public void cadastraConta(String Tipo,String nome,String dataCadastro,String dataVencimento,int numeroParcelas,double valor){
+        setTipoTitulo(tipoTitulo);
+        setNome(nome);
+        setDataCadastro(dataCadastro);
+        setDataVencimento(dataVencimento);
+        setNumeroParcelas(numeroParcelas);
+        setValor(valor);
+        setJurosDia(jurosDia);
+        setJurosMes(jurosMes);
+    }
+    
+    
 }

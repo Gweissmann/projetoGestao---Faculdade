@@ -10,12 +10,24 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.MUsuario;
 
+<<<<<<< HEAD
 
 public class VCadastramento extends javax.swing.JFrame {
     
     ControlaUsuario cadastraUsuario = new ControlaUsuario();
     MUsuario Usuario = new MUsuario();
 
+=======
+/**
+ *
+ * @author Bruno
+ */
+public class VCadastramento extends javax.swing.JFrame {
+    
+    ControlaUsuario cadastraUsuario = new ControlaUsuario();
+    MUsuario Usuario = new MUsuario();
+
+>>>>>>> projetoGestao
     public String getTxtConfirmarSenha() {
         return txtConfirmarSenha.getText();
     }
@@ -264,7 +276,11 @@ public class VCadastramento extends javax.swing.JFrame {
         
         double salarioMensal = Double.parseDouble(getTxtSalarioMensal());
         double rendaExtra = Double.parseDouble(getTxtRendaExtra());
+<<<<<<< HEAD
         //adicionando dados 
+=======
+        
+>>>>>>> projetoGestao
         Usuario.cadastroUsuario(getTxtNomeUsuario(),getTxtEmail(),getTxtSenha(),getTxtConfirmarSenha(),salarioMensal,rendaExtra);
         try {
             cadastraUsuario.adicionarUsuario(Usuario);
@@ -272,7 +288,14 @@ public class VCadastramento extends javax.swing.JFrame {
             Logger.getLogger(VCadastramento.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+<<<<<<< HEAD
         //comparacao de usuario util no futuro
+=======
+        
+        
+        
+
+>>>>>>> projetoGestao
         String senha = txtSenha.getText();
         //JOptionPane.showMessageDialog(null,senha);
         int comp = senha.compareTo(txtConfirmarSenha.getText());
