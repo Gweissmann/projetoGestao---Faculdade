@@ -70,5 +70,7 @@ public class MUsuario {
         return false;
     }
     
-      
+    
+    public void cadastroUsuario(){
+    }
 }
