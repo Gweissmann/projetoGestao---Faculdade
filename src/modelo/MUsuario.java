@@ -71,6 +71,12 @@ public class MUsuario {
     }
     
     
-    public void cadastroUsuario(){
+    public void cadastroUsuario(String nome,String email,String senha,String confirmaSenha,double salarioMensal,double rendaExtra){
+        setNome(nome);
+        setEmail(email);
+        setSenha(senha);
+        setConfirmasenha(confirmaSenha);
+        setSalarioMensal(salarioMensal);
+        setRendaExtra(rendaExtra);
     }
 }

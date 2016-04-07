@@ -5,6 +5,10 @@
  */
 package visao;
 
+import controle.ControlaUsuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -15,43 +19,44 @@ import modelo.MUsuario;
  * @author Bruno
  */
 public class VCadastramento extends javax.swing.JFrame {
-
+    
+    ControlaUsuario cadastraUsuario = new ControlaUsuario();
     MUsuario Usuario = new MUsuario();
 
-    public JTextField getTxtConfirmarSenha() {
-        return txtConfirmarSenha;
+    public String getTxtConfirmarSenha() {
+        return txtConfirmarSenha.getText();
     }
 
     public void setTxtConfirmarSenha(String txtConfirmarSenha) {
         this.txtConfirmarSenha.setText(txtConfirmarSenha);
     }
 
-    public JTextField getTxtEmail() {
-        return txtEmail;
+    public String getTxtEmail() {
+        return txtEmail.getText();
     }
 
     public void setTxtEmail(String txtEmail) {
         this.txtEmail.setText(txtEmail);
     }
 
-    public JTextField getTxtNomeUsuario() {
-        return txtNomeUsuario;
+    public String getTxtNomeUsuario() {
+        return txtNomeUsuario.getText();
     }
 
     public void setTxtNomeUsuario(String txtNomeUsuario) {
         this.txtNomeUsuario.setText(txtNomeUsuario);
     }
 
-    public JTextField getTxtSenha() {
-        return txtSenha;
+    public String getTxtSenha() {
+        return txtSenha.getText();
     }
 
     public void setTxtSenha(String txtSenha) {
         this.txtSenha.setText(txtSenha);
     }
 
-    public JLabel getLblSenhaIncorreta() {
-        return lblSenhaIncorreta;
+    public String getLblSenhaIncorreta() {
+        return lblSenhaIncorreta.getText();
     }
 
     public void setLblSenhaIncorreta(String lblSenhaIncorreta) {
@@ -62,16 +67,16 @@ public class VCadastramento extends javax.swing.JFrame {
         this.lblSenhaIncorreta.setVisible(visivel);
     }
     
-    public void getTxtSalarioMensal(){
-        //return txtSalarioMensal;
+    public String getTxtSalarioMensal(){
+       return txtSalarioMensal.getText();
     }
 
     public void setTxtSalarioMensal(String txtSalariomensal){
         this.txtSalarioMensal.setText(txtSalariomensal);
     }
     
-    public void getTxtRendaExtra(){
-        //return txtRendaExtra;
+    public String getTxtRendaExtra(){
+        return txtRendaExtra.getText();
     }
 
     public void setTxtRendaExtra(String txtRendaExtra){
@@ -267,7 +272,20 @@ public class VCadastramento extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        //verificaçao de senha
+        
+        double salarioMensal = Double.parseDouble(getTxtSalarioMensal());
+        double rendaExtra = Double.parseDouble(getTxtRendaExtra());
+        
+        Usuario.cadastroUsuario(getTxtNomeUsuario(),getTxtEmail(),getTxtSenha(),getTxtConfirmarSenha(),salarioMensal,rendaExtra);
+        try {
+            cadastraUsuario.adicionarUsuario(Usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(VCadastramento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
 
         String senha = txtSenha.getText();
         //JOptionPane.showMessageDialog(null,senha);

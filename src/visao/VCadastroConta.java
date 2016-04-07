@@ -10,8 +10,6 @@ import javax.swing.JTextField;
 import modelo.MConta;
 
 public class VCadastroConta extends javax.swing.JFrame {
-
-    ControlaContas cadastroConta = new ControlaContas();
     MConta conta = new MConta();
     ControlaContas adicionaConta = new ControlaContas();
     public String getTxtNomeTitulo() {
