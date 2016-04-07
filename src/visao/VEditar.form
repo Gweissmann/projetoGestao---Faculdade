@@ -24,18 +24,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-<<<<<<< HEAD
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="jPanel1" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="2" attributes="0">
-                      <Component id="btnEditar" linkSize="1" min="-2" pref="88" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" linkSize="1" min="-2" pref="78" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-=======
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
@@ -49,7 +37,6 @@
                   </Group>
               </Group>
               <EmptySpace pref="25" max="32767" attributes="0"/>
->>>>>>> 7bb91b0b0d84da670f63ae84e20b56f9d68c6702
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,15 +46,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-<<<<<<< HEAD
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnCancelar" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnEditar" alignment="0" pref="42" max="32767" attributes="0"/>
-=======
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCancelar" alignment="3" pref="42" max="32767" attributes="0"/>
                   <Component id="btnEditar" alignment="3" pref="42" max="32767" attributes="0"/>
->>>>>>> 7bb91b0b0d84da670f63ae84e20b56f9d68c6702
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -106,11 +87,7 @@
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtSenha" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
-=======
                           <EmptySpace max="32767" attributes="0"/>
->>>>>>> 7bb91b0b0d84da670f63ae84e20b56f9d68c6702
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="txtConfirmarSenha" min="-2" pref="123" max="-2" attributes="0"/>

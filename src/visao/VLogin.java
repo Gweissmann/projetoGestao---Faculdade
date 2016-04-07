@@ -15,6 +15,7 @@ import java.awt.Point;
  */
 public class VLogin extends javax.swing.JFrame {
       VCadastramento cadastroUsuario = new VCadastramento();
+      VUsuarioLogado usuariolLogado = new VUsuarioLogado();
     /**
      * Creates new form Calculadora
      */
@@ -160,7 +161,7 @@ public class VLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         this.setVisible(false);
-        VUsuarioLogado usuariolLogado = new VUsuarioLogado();
+        
         usuariolLogado.setVisible(true);
     }//GEN-LAST:event_btnEntrarActionPerformed
 
