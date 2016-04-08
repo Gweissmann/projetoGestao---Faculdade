@@ -34,6 +34,7 @@ public class MUsuario {
         }
         return instance;
     }
+<<<<<<< HEAD
 
     /**
      *
@@ -43,6 +44,17 @@ public class MUsuario {
         this.idUsuario = idUsuario;
     }
 
+=======
+
+    /**
+     *
+     * @param idUsuario
+     */
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+>>>>>>> 3583d6ca2d547cff3fb65c101f3664053c7ebb10
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -99,6 +111,7 @@ public class MUsuario {
         return false;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     //classe que é alimentada antes da inserçao no banco de dados
     public void cadastroUsuario(String nome,String email,String senha,String confirmaSenha,double salarioMensal,double rendaExtra){
@@ -107,6 +120,11 @@ public class MUsuario {
     //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
     public void cadastroUsuario(String nome, String email, String senha, String confirmaSenha, double salarioMensal, double rendaExtra) {
 >>>>>>> projetoGestao
+=======
+
+    //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
+    public void cadastroUsuario(String nome, String email, String senha, String confirmaSenha, double salarioMensal, double rendaExtra) {
+>>>>>>> 3583d6ca2d547cff3fb65c101f3664053c7ebb10
         setNome(nome);
         setEmail(email);
         setSenha(senha);

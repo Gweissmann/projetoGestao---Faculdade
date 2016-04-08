@@ -28,6 +28,7 @@ public class ControlaUsuario {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     //classe de adicao de usuario
     public void adicionarUsuario(MUsuario usuario) throws SQLException {
 =======
@@ -35,10 +36,16 @@ public class ControlaUsuario {
     public void adicionarUsuario() throws SQLException {
         MUsuario usuario = MUsuario.getInstance();
 >>>>>>> projetoGestao
+=======
+
+    public void adicionarUsuario() throws SQLException {
+        MUsuario usuario = MUsuario.getInstance();
+>>>>>>> 3583d6ca2d547cff3fb65c101f3664053c7ebb10
         criarConexao();
         if (con != null) {
             //parametros do banco de dados
             PreparedStatement insere = con.prepareStatement("insert into usuario(nome,email,senha,confirmacaoSenha,salarioMensal,rendaExtra) values (?,?,?,?,?,?)");
+<<<<<<< HEAD
 <<<<<<< HEAD
             //pega valores do metodo de alimentaçao e insere no banco
             insere.setString(1,usuario.getNome());
@@ -48,6 +55,8 @@ public class ControlaUsuario {
             insere.setDouble(5,usuario.getSalarioMensal());
             insere.setDouble(6,usuario.getRendaExtra());
 =======
+=======
+>>>>>>> 3583d6ca2d547cff3fb65c101f3664053c7ebb10
             //alimenta metodo de inserir usuario
             insere.setString(1, usuario.getNome());
             insere.setString(2, usuario.getEmail());
@@ -55,7 +64,10 @@ public class ControlaUsuario {
             insere.setString(4, usuario.getConfirmasenha());
             insere.setDouble(5, usuario.getSalarioMensal());
             insere.setDouble(6, usuario.getRendaExtra());
+<<<<<<< HEAD
 >>>>>>> projetoGestao
+=======
+>>>>>>> 3583d6ca2d547cff3fb65c101f3664053c7ebb10
             try {
 
                 insere.execute();
