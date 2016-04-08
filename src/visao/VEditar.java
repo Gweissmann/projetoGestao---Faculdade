@@ -16,7 +16,7 @@ import modelo.MUsuario;
  */
 public class VEditar extends javax.swing.JFrame {
 
-    MUsuario Usuario = new MUsuario();
+    MUsuario Usuario =  MUsuario.getInstance();
 
     public JTextField getTxtConfirmarSenha() {
         return txtConfirmarSenha;
