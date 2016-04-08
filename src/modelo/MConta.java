@@ -84,7 +84,6 @@ public class MConta {
         this.jurosMes = jurosMes;
     }
 <<<<<<< HEAD
-<<<<<<< HEAD
     //classe que é alimentada antes da inserçao no banco de dados
     public void cadastraConta(String Tipo,String nome,String dataCadastro,String dataVencimento,int numeroParcelas,double valor){
 =======
@@ -92,11 +91,6 @@ public class MConta {
     //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
     public void cadastraConta(String Tipo, String nome, String dataCadastro, String dataVencimento, int numeroParcelas, double valor, double juros) {
 >>>>>>> projetoGestao
-=======
-
-    //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
-    public void cadastraConta(String Tipo, String nome, String dataCadastro, String dataVencimento, int numeroParcelas, double valor, double juros) {
->>>>>>> 3583d6ca2d547cff3fb65c101f3664053c7ebb10
         setTipoTitulo(tipoTitulo);
         setNome(nome);
         setDataCadastro(dataCadastro);
