@@ -5,27 +5,56 @@
  */
 package modelo;
 
+import com.sun.org.apache.xerces.internal.impl.dtd.models.CMUniOp;
+
 /**
  *
  * @author Bruno
  */
 public class MUsuario {
+
     private String nome = "";
     private String email = "";
-    private String senha  = "";
+    private String senha = "";
     private String confirmasenha = "";
     private double salariomensal = 0.00;
     private double rendaextra = 0.00;
-    
+    private Integer idUsuario = null;
 
-     public String getNome() {
+    //Metodo Singleton*******
+    private static MUsuario instance = null;
+
+    private MUsuario() {
+        // Exists only to defeat instantiation.
+    }
+
+    public static MUsuario getInstance() {
+        if (instance == null) {
+            instance = new MUsuario();
+        }
+        return instance;
+    }
+
+    /**
+     *
+     * @param idUsuario
+     */
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -49,29 +78,29 @@ public class MUsuario {
     public void setConfirmasenha(String confirmasenha) {
         this.confirmasenha = confirmasenha;
     }
-    
-    public void setSalarioMensal(double salariomensal){
+
+    public void setSalarioMensal(double salariomensal) {
         this.salariomensal = salariomensal;
     }
-    
-    public double getSalarioMensal(){
+
+    public double getSalarioMensal() {
         return salariomensal;
     }
-    
-    public void setRendaExtra(double rendaextra){
+
+    public void setRendaExtra(double rendaextra) {
         this.rendaextra = rendaextra;
     }
-    
-    public double getRendaExtra(){
+
+    public double getRendaExtra() {
         return rendaextra;
     }
-    
-    public boolean loginUsuario(String email, String senha){
+
+    public boolean loginUsuario(String email, String senha) {
         return false;
     }
-    
+
     //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
-    public void cadastroUsuario(String nome,String email,String senha,String confirmaSenha,double salarioMensal,double rendaExtra){
+    public void cadastroUsuario(String nome, String email, String senha, String confirmaSenha, double salarioMensal, double rendaExtra) {
         setNome(nome);
         setEmail(email);
         setSenha(senha);
@@ -79,4 +108,11 @@ public class MUsuario {
         setSalarioMensal(salarioMensal);
         setRendaExtra(rendaExtra);
     }
+
+    public void getlogin(String email, String senha) {
+        setEmail(email);
+        setSenha(senha);
+
+    }
+
 }

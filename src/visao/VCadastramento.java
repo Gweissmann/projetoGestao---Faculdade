@@ -21,7 +21,7 @@ import modelo.MUsuario;
 public class VCadastramento extends javax.swing.JFrame {
     
     ControlaUsuario cadastraUsuario = new ControlaUsuario();
-    MUsuario Usuario = new MUsuario();
+    MUsuario Usuario =  MUsuario.getInstance();
 
     public String getTxtConfirmarSenha() {
         return txtConfirmarSenha.getText();
@@ -278,7 +278,7 @@ public class VCadastramento extends javax.swing.JFrame {
         
         Usuario.cadastroUsuario(getTxtNomeUsuario(),getTxtEmail(),getTxtSenha(),getTxtConfirmarSenha(),salarioMensal,rendaExtra);
         try {
-            cadastraUsuario.adicionarUsuario(Usuario);
+            cadastraUsuario.adicionarUsuario();
         } catch (SQLException ex) {
             Logger.getLogger(VCadastramento.class.getName()).log(Level.SEVERE, null, ex);
         }
