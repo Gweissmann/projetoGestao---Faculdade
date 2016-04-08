@@ -5,29 +5,29 @@
  */
 package visao;
 
+import controle.ControlaUsuario;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Bruno
  */
 public class VLogin extends javax.swing.JFrame {
-      VCadastramento cadastroUsuario = new VCadastramento();
-      VUsuarioLogado usuariolLogado = new VUsuarioLogado();
-    /**
-     * Creates new form Calculadora
-     */
+
+    VCadastramento cadastroUsuario = new VCadastramento();
+    VUsuarioLogado usuariolLogado = new VUsuarioLogado();
+    ControlaUsuario controlausuario = new ControlaUsuario();
+
     public VLogin() {
         initComponents();
     }
 
-    
-    
-    
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -160,9 +160,21 @@ public class VLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        this.setVisible(false);
-        
-        usuariolLogado.setVisible(true);
+        String email = txtLogin.getText();
+        String senha = txtSenha.getText();
+
+        try {
+            if (controlausuario.getLogin(email, senha) == true) {
+                usuariolLogado.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "senha ou email incorreto.Cadastre-se para acessar");
+            }
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void lblCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCadastroMouseClicked
@@ -179,16 +191,12 @@ public class VLogin extends javax.swing.JFrame {
         //this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-   
     public static void main(String args[]) {
-        
 
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VLogin().setVisible(true);
-                 
-               
+
             }
         });
     }

@@ -8,10 +8,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import modelo.MConta;
+import modelo.MUsuario;
 
 public class VCadastroConta extends javax.swing.JFrame {
+
     MConta conta = new MConta();
     ControlaContas adicionaConta = new ControlaContas();
+
     public String getTxtNomeTitulo() {
         return txtNomeTitulo.getText();
     }
@@ -36,8 +39,8 @@ public class VCadastroConta extends javax.swing.JFrame {
         this.txtNumeroParcelas.setText(txtNumeroParcelas);
     }
 
-    public JTextField getTxtValorJuros() {
-        return txtValorJuros;
+    public String getTxtValorJuros() {
+        return txtValorJuros.getText();
     }
 
     public void setTxtValorJuros(String txtValorJuros) {
@@ -45,7 +48,7 @@ public class VCadastroConta extends javax.swing.JFrame {
     }
 
     public String getTxtValorTitulo() {
-        return txtValorTitulo.getText().toString();
+        return txtValorTitulo.getText();
     }
 
     public void setTxtValorTitulo(String txtValorTitulo) {
@@ -124,6 +127,12 @@ public class VCadastroConta extends javax.swing.JFrame {
         });
 
         jLabel5.setText("Valor do Juros");
+
+        txtValorJuros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorJurosActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Numero de parcelas");
 
@@ -287,21 +296,26 @@ public class VCadastroConta extends javax.swing.JFrame {
         String tipoConta = cbTipoConta.getSelectedItem().toString();
         int numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
         double valorTitulo = Double.parseDouble(getTxtValorTitulo());
+        double valorJuros = Double.parseDouble(getTxtValorJuros());
+        //arrumar cadastro de contas
+        conta.cadastraConta(tipoConta, getTxtNomeTitulo(), getFtfDataCadastramento(), getFtfDataVencimento(), numeroParcelas, valorTitulo, valorJuros);
 
-        conta.cadastraConta(tipoConta, getTxtNomeTitulo(), getFtfDataCadastramento(), getFtfDataVencimento(), numeroParcelas, valorTitulo);
-        
         try {
             adicionaConta.adicionarConta(conta);
         } catch (SQLException ex) {
             Logger.getLogger(VCadastroConta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void ftfDataVencimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfDataVencimentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ftfDataVencimentoActionPerformed
+
+    private void txtValorJurosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorJurosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorJurosActionPerformed
 
     /**
      * @param args the command line arguments
