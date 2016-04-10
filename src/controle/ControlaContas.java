@@ -33,12 +33,12 @@ public class ControlaContas {
 
         criarConexao();
         if (con != null) {
-            PreparedStatement insere = con.prepareStatement("insert into cadastroConta(tipoTitulo,nome,dataCadastro,dataVencimento,numeroParcelas,valor,idCliente,juros) values (?,?,?,?,?,?,?,?)");
+            PreparedStatement insere = con.prepareStatement("insert into cadastroConta(tipoTitulo,nome,jdcDataCadastro,jdcDataVencimento,numeroParcelas,valor,idCliente,juros) values (?,?,?,?,?,?,?,?)");
             //alimenta metodo de inserir conta
             insere.setString(1, conta.getTipoTitulo());
             insere.setString(2, conta.getNome());
-            insere.setString(3, conta.getDataCadastro());
-            insere.setString(4, conta.getDataVencimento());
+            insere.setString(3, conta.getJdcDataCadastro());
+            insere.setString(4, conta.getJdcDataVencimento());
             insere.setInt(5, conta.getNumeroParcelas());
             insere.setDouble(6, conta.getValor());
             insere.setInt(7, usuario.getIdUsuario());
