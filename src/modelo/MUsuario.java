@@ -98,15 +98,9 @@ public class MUsuario {
     public boolean loginUsuario(String email, String senha) {
         return false;
     }
-<<<<<<< HEAD
-    
-    //classe que é alimentada antes da inserçao no banco de dados
-    public void cadastroUsuario(String nome,String email,String senha,String confirmaSenha,double salarioMensal,double rendaExtra){
-=======
 
     //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
     public void cadastroUsuario(String nome, String email, String senha, String confirmaSenha, double salarioMensal, double rendaExtra) {
->>>>>>> projetoGestao
         setNome(nome);
         setEmail(email);
         setSenha(senha);

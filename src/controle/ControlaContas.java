@@ -33,16 +33,6 @@ public class ControlaContas {
 
         criarConexao();
         if (con != null) {
-<<<<<<< HEAD
-            PreparedStatement insere = con.prepareStatement("insert into cadastroConta(tipoTitulo,nome,dataCadastro,dataVencimento,numeroParcelas,valor) values (?,?,?,?,?,?)");
-            //pega valores do metodo de alimentaçao e insere no banco
-            insere.setString(1,conta.getTipoTitulo());
-            insere.setString(2,conta.getNome());
-            insere.setString(3,conta.getDataCadastro());
-            insere.setString(4,conta.getDataVencimento());
-            insere.setInt(5,conta.getNumeroParcelas());
-            insere.setDouble(6,conta.getValor());
-=======
             PreparedStatement insere = con.prepareStatement("insert into cadastroConta(tipoTitulo,nome,dataCadastro,dataVencimento,numeroParcelas,valor,idCliente,juros) values (?,?,?,?,?,?,?,?)");
             //alimenta metodo de inserir conta
             insere.setString(1, conta.getTipoTitulo());
@@ -53,7 +43,6 @@ public class ControlaContas {
             insere.setDouble(6, conta.getValor());
             insere.setInt(7, usuario.getIdUsuario());
             insere.setDouble(8, conta.getJurosDia());
->>>>>>> projetoGestao
             try {
 
                 insere.execute();

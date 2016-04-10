@@ -27,27 +27,12 @@ public class ControlaUsuario {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
-    //classe de adicao de usuario
-    public void adicionarUsuario(MUsuario usuario) throws SQLException {
-=======
 
     public void adicionarUsuario() throws SQLException {
         MUsuario usuario = MUsuario.getInstance();
->>>>>>> projetoGestao
         criarConexao();
         if (con != null) {
-            //parametros do banco de dados
             PreparedStatement insere = con.prepareStatement("insert into usuario(nome,email,senha,confirmacaoSenha,salarioMensal,rendaExtra) values (?,?,?,?,?,?)");
-<<<<<<< HEAD
-            //pega valores do metodo de alimentaçao e insere no banco
-            insere.setString(1,usuario.getNome());
-            insere.setString(2,usuario.getEmail());
-            insere.setString(3,usuario.getSenha());
-            insere.setString(4,usuario.getConfirmasenha());
-            insere.setDouble(5,usuario.getSalarioMensal());
-            insere.setDouble(6,usuario.getRendaExtra());
-=======
             //alimenta metodo de inserir usuario
             insere.setString(1, usuario.getNome());
             insere.setString(2, usuario.getEmail());
@@ -55,7 +40,6 @@ public class ControlaUsuario {
             insere.setString(4, usuario.getConfirmasenha());
             insere.setDouble(5, usuario.getSalarioMensal());
             insere.setDouble(6, usuario.getRendaExtra());
->>>>>>> projetoGestao
             try {
 
                 insere.execute();
