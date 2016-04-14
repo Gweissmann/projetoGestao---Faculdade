@@ -14,6 +14,14 @@ public class VCadastroConta extends javax.swing.JFrame {
 
     MConta conta = new MConta();
     ControlaContas adicionaConta = new ControlaContas();
+    
+    String nome;
+    String tipoConta;
+    double valorTitulo;
+    double valorJuros;
+    int numeroParcelas;
+    String dataCadastro;
+    String dataVencimento;
 
 
     public String getTxtNomeTitulo() {
@@ -291,17 +299,24 @@ public class VCadastroConta extends javax.swing.JFrame {
 
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-
-        //Falta pegar valores da combobox
-        String tipoConta = cbTipoConta.getSelectedItem().toString();
-        int numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
-        double valorTitulo = Double.parseDouble(getTxtValorTitulo());
-        double valorJuros = Double.parseDouble(getTxtValorJuros());
-        //arrumar cadastro de contas
-        conta.cadastraConta(tipoConta, getTxtNomeTitulo(), getJdcDatacadastramento(), getJdcDataVencimento(), numeroParcelas, valorTitulo, valorJuros);
-
+       
         try {
+        //Falta pegar valores da combobox
+            nome = txtNomeTitulo.getText();
+            tipoConta = cbTipoConta.getSelectedItem().toString();
+            valorTitulo = Double.parseDouble(getTxtValorTitulo());
+            valorJuros = Double.parseDouble(getTxtValorJuros());
+            numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
+            dataCadastro = jdcDataCadastramento.getDate().toLocaleString();
+            dataVencimento = jdcDataVencimento.getDate().toLocaleString();
+            
+            setCampos();
+            //arrumar cadastro de contas
+            //conta.cadastraConta(tipoConta, getTxtNomeTitulo(), getJdcDatacadastramento(), getJdcDataVencimento(), numeroParcelas, valorTitulo, valorJuros);
+            
             adicionaConta.adicionarConta(conta);
+        
+            
         } catch (SQLException ex) {
             Logger.getLogger(VCadastroConta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -367,4 +382,8 @@ public class VCadastroConta extends javax.swing.JFrame {
     private javax.swing.JTextField txtValorJuros;
     private javax.swing.JTextField txtValorTitulo;
     // End of variables declaration//GEN-END:variables
+
+    private void setCampos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
