@@ -282,10 +282,10 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarUsurioActionPerformed
 
     private void btnCadastrarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTituloActionPerformed
-        String np = String.valueOf(0);
+        String np = String.valueOf(0.00);
         cadastro.setTxtNumeroParcelas(np);
         cadastro.setTxtNomeTitulo("");
-        String vj = String.valueOf(0);
+        String vj = String.valueOf(0.00);
         cadastro.setTxtValorJuros(vj);
         String vt = String.valueOf(0.00);
         cadastro.setTxtValorTitulo(vt);

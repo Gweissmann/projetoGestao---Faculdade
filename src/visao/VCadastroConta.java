@@ -81,9 +81,10 @@ public class VCadastroConta extends javax.swing.JFrame {
       return jdcDataVencimento.getDate().toLocaleString();
     }
 
-    public void setJdcDataVencimento(String jdcDataVencimento) {
+    public void setJdcDataVencimento( String  jdcDataVencimento) {
          this.jdcDataVencimento.setDate(null);
     }
+    
 
     public VCadastroConta() {
         initComponents();
@@ -310,6 +311,10 @@ public class VCadastroConta extends javax.swing.JFrame {
             dataCadastro = jdcDataCadastramento.getDate().toLocaleString();
             dataVencimento = jdcDataVencimento.getDate().toLocaleString();
             
+            //SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            //java.sql.Date data = new java.sql.Date(format.parse(dataStr).getTime());
+
+         
             setCampos();
             //arrumar cadastro de contas
             //conta.cadastraConta(tipoConta, getTxtNomeTitulo(), getJdcDatacadastramento(), getJdcDataVencimento(), numeroParcelas, valorTitulo, valorJuros);

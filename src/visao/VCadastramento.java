@@ -117,7 +117,7 @@ public class VCadastramento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro ", 2, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setText("Nome do Usuario:");
 
@@ -239,7 +239,7 @@ public class VCadastramento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -278,7 +278,10 @@ public class VCadastramento extends javax.swing.JFrame {
         
         Usuario.cadastroUsuario(getTxtNomeUsuario(),getTxtEmail(),getTxtSenha(),getTxtConfirmarSenha(),salarioMensal,rendaExtra);
         try {
+            
             cadastraUsuario.adicionarUsuario();
+            JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso.");
+            this.setVisible(false);    
         } catch (SQLException ex) {
             Logger.getLogger(VCadastramento.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -300,7 +303,9 @@ public class VCadastramento extends javax.swing.JFrame {
             lblSenhaIncorreta.setVisible(true);
 
         }
-
+        
+        
+        
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
