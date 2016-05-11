@@ -168,7 +168,7 @@ public class VLogin extends javax.swing.JFrame {
                 usuariolLogado.setVisible(true);
                 this.setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(null, "senha ou email incorreto.Cadastre-se para acessar");
+                JOptionPane.showMessageDialog(null, "senha ou email incorreto. Cadastre-se para acessar");
             }
             this.setVisible(false);
         } catch (SQLException ex) {

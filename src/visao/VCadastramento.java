@@ -14,10 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.MUsuario;
 
-/**
- *
- * @author Bruno
- */
+
 public class VCadastramento extends javax.swing.JFrame {
     
     ControlaUsuario cadastraUsuario = new ControlaUsuario();

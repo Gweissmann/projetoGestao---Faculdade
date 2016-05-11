@@ -22,13 +22,14 @@ public class MUsuario {
     private Integer idUsuario = null;
 
     //Metodo Singleton*******
+    //variavel
     private static MUsuario instance = null;
-
+    //construtor privado
     private MUsuario() {
         // Exists only to defeat instantiation.
     }
-
-    public static MUsuario getInstance() {
+    //metodo de captura
+    public static synchronized MUsuario getInstance() {
         if (instance == null) {
             instance = new MUsuario();
         }

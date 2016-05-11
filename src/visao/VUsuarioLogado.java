@@ -282,12 +282,15 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarUsurioActionPerformed
 
     private void btnCadastrarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTituloActionPerformed
-        cadastro.setTxtNumeroParcelas("");
+        String np = String.valueOf(0);
+        cadastro.setTxtNumeroParcelas(np);
         cadastro.setTxtNomeTitulo("");
-        cadastro.setTxtValorJuros("");
-        cadastro.setTxtValorTitulo("");
-        cadastro.setFtfDataCadastramento("");
-        cadastro.setFtfDataVencimento("");
+        String vj = String.valueOf(0);
+        cadastro.setTxtValorJuros(vj);
+        String vt = String.valueOf(0.00);
+        cadastro.setTxtValorTitulo(vt);
+        cadastro.setJdcDataCadastramento("");
+        cadastro.setJdcDataVencimento("");
         cadastro.setVisible(true);
         //mudaOpacidade(true);
     }//GEN-LAST:event_btnCadastrarTituloActionPerformed
@@ -320,14 +323,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     }
     
     
-    
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        
-       
-       //criar metodo para controlar opacidade dos forms
-        
-        
-    }                                            
+                              
 
     /**
      * @param args the command line arguments
@@ -361,12 +357,6 @@ public class VUsuarioLogado extends javax.swing.JFrame {
             @Override
             public void run() {
                 new VUsuarioLogado().setVisible(true);
-               
-                
-                
-                
-                
-                
                 
                 
             }
