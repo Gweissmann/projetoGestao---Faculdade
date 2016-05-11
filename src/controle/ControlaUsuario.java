@@ -32,14 +32,13 @@ public class ControlaUsuario {
         MUsuario usuario = MUsuario.getInstance();
         criarConexao();
         if (con != null) {
-            PreparedStatement insere = con.prepareStatement("insert into usuario(nome,email,senha,confirmacaoSenha,salarioMensal,rendaExtra) values (?,?,?,?,?,?)");
+            PreparedStatement insere = con.prepareStatement("insert into usuario(nome,email,senha,salarioMensal,rendaExtra) values (?,?,?,?,?)");
             //alimenta metodo de inserir usuario
             insere.setString(1, usuario.getNome());
             insere.setString(2, usuario.getEmail());
             insere.setString(3, usuario.getSenha());
-            insere.setString(4, usuario.getConfirmasenha());
-            insere.setDouble(5, usuario.getSalarioMensal());
-            insere.setDouble(6, usuario.getRendaExtra());
+            insere.setDouble(4, usuario.getSalarioMensal());
+            insere.setDouble(5, usuario.getRendaExtra());
             try {
 
                 insere.execute();

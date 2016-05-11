@@ -27,7 +27,7 @@ public class ClasseConexao {
 
             String username = "root";        //nome de um usuário de seu BD      
 
-            String password = "root";      //sua senha de acesso
+            String password = "";      //sua senha de acesso
 
             connection = DriverManager.getConnection(url, username, password);
 

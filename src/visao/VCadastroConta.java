@@ -2,10 +2,13 @@ package visao;
 
 import controle.ControlaContas;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.MConta;
 import modelo.MUsuario;
@@ -15,6 +18,13 @@ public class VCadastroConta extends javax.swing.JFrame {
     MConta conta = new MConta();
     ControlaContas adicionaConta = new ControlaContas();
 
+    String nome;
+    String tipoConta;
+    double valorTitulo;
+    double valorJuros;
+    int numeroParcelas;
+    String dataCadastro;
+    String dataVencimento;
 
     public String getTxtNomeTitulo() {
         return txtNomeTitulo.getText();
@@ -56,25 +66,30 @@ public class VCadastroConta extends javax.swing.JFrame {
         this.txtValorTitulo.setText(txtValorTitulo);
     }
 
-    
-    //String ftfDataVencimento = jdcDataCadastramento.getDate().toString();
-    //String ftfDataCadastramento = jdcDataCadastramento.getDate().toString();
-    
-    
     public String getJdcDatacadastramento() {
-       return jdcDataCadastramento.getDate().toLocaleString();
+        return jdcDataCadastramento.getDate().toLocaleString();
     }
 
-     public void setJdcDataCadastramento(String jdcDataCadastramento ) {
+    public void setJdcDataCadastramento(String jdcDataCadastramento) {
         this.jdcDataCadastramento.setDate(null);
     }
 
     public String getJdcDataVencimento() {
-      return jdcDataVencimento.getDate().toLocaleString();
+        return jdcDataVencimento.getDate().toLocaleString();
     }
 
     public void setJdcDataVencimento(String jdcDataVencimento) {
-         this.jdcDataVencimento.setDate(null);
+        this.jdcDataVencimento.setDate(null);
+    }
+
+    public void setValues() {
+        conta.setNome(nome);
+        conta.setTipoTitulo(tipoConta);
+        conta.setValor(valorTitulo);
+        conta.setJurosDia(valorJuros);
+        conta.setNumeroParcelas(numeroParcelas);
+        conta.setJdcDataCadastro(dataCadastro);
+        conta.setJdcDataVencimento(dataVencimento);
     }
 
     public VCadastroConta() {
@@ -101,10 +116,10 @@ public class VCadastroConta extends javax.swing.JFrame {
         txtValorJuros = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtNumeroParcelas = new javax.swing.JTextField();
-        cbTipoConta = new javax.swing.JComboBox<String>();
+        cbTipoConta = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jdcDataVencimento = new com.toedter.calendar.JDateChooser();
         jdcDataCadastramento = new com.toedter.calendar.JDateChooser();
+        jdcDataVencimento = new com.toedter.calendar.JDateChooser();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
@@ -136,7 +151,7 @@ public class VCadastroConta extends javax.swing.JFrame {
 
         jLabel6.setText("Numero de parcelas");
 
-        cbTipoConta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Boleto", "Carnê", "Item 3", "Item 4" }));
+        cbTipoConta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleto", "Carnê", "Item 3", "Item 4" }));
         cbTipoConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoContaActionPerformed(evt);
@@ -178,15 +193,16 @@ public class VCadastroConta extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(txtValorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jdcDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jdcDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(44, 44, 44)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                                .addGap(92, 92, 92)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(75, 75, 75)
+                                .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,15 +234,13 @@ public class VCadastroConta extends javax.swing.JFrame {
                         .addComponent(txtNumeroParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdcDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jdcDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("Cancelar");
@@ -248,22 +262,22 @@ public class VCadastroConta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(btnCadastrar)
-                .addGap(32, 32, 32)
+                .addGap(24, 24, 24)
                 .addComponent(btnCancelar)
-                .addGap(115, 115, 115))
+                .addGap(102, 102, 102))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -274,13 +288,6 @@ public class VCadastroConta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeTituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeTituloActionPerformed
-
-    private void cbTipoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoContaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbTipoContaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
@@ -292,16 +299,21 @@ public class VCadastroConta extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
-        //Falta pegar valores da combobox
-        String tipoConta = cbTipoConta.getSelectedItem().toString();
-        int numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
-        double valorTitulo = Double.parseDouble(getTxtValorTitulo());
-        double valorJuros = Double.parseDouble(getTxtValorJuros());
-        //arrumar cadastro de contas
-        conta.cadastraConta(tipoConta, getTxtNomeTitulo(), getJdcDatacadastramento(), getJdcDataVencimento(), numeroParcelas, valorTitulo, valorJuros);
-
         try {
+            //Falta pegar valores da combobox
+            nome = txtNomeTitulo.getText();
+            tipoConta = cbTipoConta.getSelectedItem().toString();
+            valorTitulo = Double.parseDouble(getTxtValorTitulo());
+            valorJuros = Double.parseDouble(getTxtValorJuros());
+            numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
+            dataCadastro = jdcDataCadastramento.getDate().toString();
+            dataVencimento = jdcDataVencimento.getDate().toString();
+
+            setValues();
             adicionaConta.adicionarConta(conta);
+            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.");
+            this.setVisible(false);
+
         } catch (SQLException ex) {
             Logger.getLogger(VCadastroConta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -309,9 +321,17 @@ public class VCadastroConta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void cbTipoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoContaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTipoContaActionPerformed
+
     private void txtValorJurosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorJurosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorJurosActionPerformed
+
+    private void txtNomeTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeTituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeTituloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,4 +387,5 @@ public class VCadastroConta extends javax.swing.JFrame {
     private javax.swing.JTextField txtValorJuros;
     private javax.swing.JTextField txtValorTitulo;
     // End of variables declaration//GEN-END:variables
+
 }

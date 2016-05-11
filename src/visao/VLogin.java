@@ -168,9 +168,9 @@ public class VLogin extends javax.swing.JFrame {
                 usuariolLogado.setVisible(true);
                 this.setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(null, "senha ou email incorreto. Cadastre-se para acessar");
+                JOptionPane.showMessageDialog(null, "senha ou email incorreto."+" "+"Cadastre-se para acessar");
             }
-            this.setVisible(false);
+            
         } catch (SQLException ex) {
             Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -184,6 +184,9 @@ public class VLogin extends javax.swing.JFrame {
         cadastroUsuario.setTxtConfirmarSenha("");
         cadastroUsuario.setVisible(true);
         cadastroUsuario.setSenhaIncorreta(false);
+        cadastroUsuario.setTxtSalarioMensal("");
+        cadastroUsuario.setTxtRendaExtra("");
+        cadastroUsuario.setTxtConfirmarSenha("");
     }//GEN-LAST:event_lblCadastroMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
