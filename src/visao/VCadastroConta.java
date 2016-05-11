@@ -2,8 +2,10 @@ package visao;
 
 import controle.ControlaContas;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -309,14 +311,17 @@ public class VCadastroConta extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
         try {
+            //objeto df configura data para a data desejada
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
             //Falta pegar valores da combobox
             nome = txtNomeTitulo.getText();
             tipoConta = cbTipoConta.getSelectedItem().toString();
             valorTitulo = Double.parseDouble(getTxtValorTitulo());
             valorJuros = Double.parseDouble(getTxtValorJuros());
             numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
-            dataCadastro = jdcDataCadastramento.getDate().toLocaleString();
-            dataVencimento = jdcDataVencimento.getDate().toLocaleString();
+            dataCadastro = df.format(jdcDataCadastramento.getDate());
+            dataVencimento = df.format(jdcDataVencimento.getDate());
 
             setValues();
             adicionaConta.adicionarConta(conta);
