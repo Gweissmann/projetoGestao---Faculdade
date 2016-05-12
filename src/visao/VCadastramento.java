@@ -19,9 +19,9 @@ import modelo.MUsuario;
  * @author Bruno
  */
 public class VCadastramento extends javax.swing.JFrame {
-    
+
     ControlaUsuario cadastraUsuario = new ControlaUsuario();
-    MUsuario Usuario =  MUsuario.getInstance();
+    MUsuario Usuario = MUsuario.getInstance();
 
     public String getTxtConfirmarSenha() {
         return txtConfirmarSenha.getText();
@@ -66,24 +66,23 @@ public class VCadastramento extends javax.swing.JFrame {
     public void setSenhaIncorreta(boolean visivel) {
         this.lblSenhaIncorreta.setVisible(visivel);
     }
-    
-    public String getTxtSalarioMensal(){
-       return txtSalarioMensal.getText();
+
+    public String getTxtSalarioMensal() {
+        return txtSalarioMensal.getText();
     }
 
-    public void setTxtSalarioMensal(String txtSalariomensal){
+    public void setTxtSalarioMensal(String txtSalariomensal) {
         this.txtSalarioMensal.setText(txtSalariomensal);
     }
-    
-    public String getTxtRendaExtra(){
+
+    public String getTxtRendaExtra() {
         return txtRendaExtra.getText();
     }
 
-    public void setTxtRendaExtra(String txtRendaExtra){
+    public void setTxtRendaExtra(String txtRendaExtra) {
         this.txtRendaExtra.setText(txtRendaExtra);
     }
-    
-    
+
     public VCadastramento() {
         initComponents();
 
@@ -138,6 +137,12 @@ public class VCadastramento extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Confirmar senha:");
+
+        txtConfirmarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConfirmarSenhaActionPerformed(evt);
+            }
+        });
 
         lblSenhaIncorreta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblSenhaIncorreta.setForeground(new java.awt.Color(255, 0, 51));
@@ -239,7 +244,7 @@ public class VCadastramento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -272,41 +277,41 @@ public class VCadastramento extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
+
         double salarioMensal = Double.parseDouble(getTxtSalarioMensal());
         double rendaExtra = Double.parseDouble(getTxtRendaExtra());
-        
-        Usuario.cadastroUsuario(getTxtNomeUsuario(),getTxtEmail(),getTxtSenha(),getTxtConfirmarSenha(),salarioMensal,rendaExtra);
+
+        Usuario.cadastroUsuario(getTxtNomeUsuario(), getTxtEmail(), getTxtSenha(), salarioMensal, rendaExtra);
         try {
-            cadastraUsuario.adicionarUsuario();
+
+            String senha = txtSenha.getText();
+            //JOptionPane.showMessageDialog(null,senha);
+            int comp = senha.compareTo(txtConfirmarSenha.getText());
+
+            if (comp == 0) {
+                cadastraUsuario.adicionarUsuario();
+                Usuario.setSenha(txtSenha.getText());
+                lblSenhaIncorreta.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.");
+                this.setVisible(false);
+            } else {
+                lblSenhaIncorreta.setVisible(true);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(VCadastramento.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-        
-
-        String senha = txtSenha.getText();
-        //JOptionPane.showMessageDialog(null,senha);
-        int comp = senha.compareTo(txtConfirmarSenha.getText());
-
-        if (comp == 0) {
-
-            Usuario.setSenha(txtSenha.getText());
-            lblSenhaIncorreta.setVisible(false);
-
-        } else {
-            lblSenhaIncorreta.setVisible(true);
-
         }
 
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtConfirmarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmarSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConfirmarSenhaActionPerformed
 
     /**
      * @param args the command line arguments

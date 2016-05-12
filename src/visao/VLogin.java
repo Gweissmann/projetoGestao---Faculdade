@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.MUsuario;
+import sun.security.jca.GetInstance;
 
 /**
  *
@@ -23,6 +25,14 @@ public class VLogin extends javax.swing.JFrame {
     VCadastramento cadastroUsuario = new VCadastramento();
     VUsuarioLogado usuariolLogado = new VUsuarioLogado();
     ControlaUsuario controlausuario = new ControlaUsuario();
+    MUsuario usuario = MUsuario.getInstance();
+
+    public void setLabelFromUserLogged() {
+        String salliquido = Double.toString(usuario.getSalarioMensal());
+        usuariolLogado.setNomeUsuario(usuario.getNome());
+        usuariolLogado.setSalLiq(salliquido);
+
+    }
 
     public VLogin() {
         initComponents();
@@ -166,11 +176,13 @@ public class VLogin extends javax.swing.JFrame {
         try {
             if (controlausuario.getLogin(email, senha) == true) {
                 usuariolLogado.setVisible(true);
+                setLabelFromUserLogged();
                 this.setVisible(false);
+
             } else {
-                JOptionPane.showMessageDialog(null, "senha ou email incorreto.Cadastre-se para acessar");
+                JOptionPane.showMessageDialog(null, "senha ou email incorreto." + " " + "Cadastre-se para acessar");
             }
-            this.setVisible(false);
+
         } catch (SQLException ex) {
             Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -184,6 +196,9 @@ public class VLogin extends javax.swing.JFrame {
         cadastroUsuario.setTxtConfirmarSenha("");
         cadastroUsuario.setVisible(true);
         cadastroUsuario.setSenhaIncorreta(false);
+        cadastroUsuario.setTxtSalarioMensal("");
+        cadastroUsuario.setTxtRendaExtra("");
+        cadastroUsuario.setTxtConfirmarSenha("");
     }//GEN-LAST:event_lblCadastroMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

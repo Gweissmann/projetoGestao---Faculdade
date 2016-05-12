@@ -16,7 +16,6 @@ public class MUsuario {
     private String nome = "";
     private String email = "";
     private String senha = "";
-    private String confirmasenha = "";
     private double salariomensal = 0.00;
     private double rendaextra = 0.00;
     private Integer idUsuario = null;
@@ -71,13 +70,7 @@ public class MUsuario {
         this.senha = senha;
     }
 
-    public String getConfirmasenha() {
-        return confirmasenha;
-    }
-
-    public void setConfirmasenha(String confirmasenha) {
-        this.confirmasenha = confirmasenha;
-    }
+    
 
     public void setSalarioMensal(double salariomensal) {
         this.salariomensal = salariomensal;
@@ -98,19 +91,12 @@ public class MUsuario {
     public boolean loginUsuario(String email, String senha) {
         return false;
     }
-<<<<<<< HEAD
-    
-    //classe que é alimentada antes da inserçao no banco de dados
-    public void cadastroUsuario(String nome,String email,String senha,String confirmaSenha,double salarioMensal,double rendaExtra){
-=======
 
     //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
-    public void cadastroUsuario(String nome, String email, String senha, String confirmaSenha, double salarioMensal, double rendaExtra) {
->>>>>>> projetoGestao
+    public void cadastroUsuario(String nome, String email, String senha, double salarioMensal, double rendaExtra) {
         setNome(nome);
         setEmail(email);
         setSenha(senha);
-        setConfirmasenha(confirmaSenha);
         setSalarioMensal(salarioMensal);
         setRendaExtra(rendaExtra);
     }

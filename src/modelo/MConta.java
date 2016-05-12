@@ -44,19 +44,19 @@ public class MConta {
         this.nome = nome;
     }
     
-    public String getDataCadastro() {
+    public String getJdcDataCadastro() {
         return dataCadastro;
     }
     
-    public void setDataCadastro(String dataCadastro) {
+    public void setJdcDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
     
-    public String getDataVencimento() {
+    public String getJdcDataVencimento() {
         return dataVencimento;
     }
     
-    public void setDataVencimento(String dataVencimento) {
+    public void setJdcDataVencimento(String dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
     
@@ -83,18 +83,13 @@ public class MConta {
     public void setJurosMes(double jurosMes) {
         this.jurosMes = jurosMes;
     }
-<<<<<<< HEAD
-    //classe que é alimentada antes da inserçao no banco de dados
-    public void cadastraConta(String Tipo,String nome,String dataCadastro,String dataVencimento,int numeroParcelas,double valor){
-=======
 
     //metodo que sera alimentado com valores antes de ser enviado para o banco de dados
-    public void cadastraConta(String Tipo, String nome, String dataCadastro, String dataVencimento, int numeroParcelas, double valor, double juros) {
->>>>>>> projetoGestao
+    public void cadastraConta(String Tipo, String nome, String JdcdataCadastro, String JdcdataVencimento, int numeroParcelas, double valor, double juros) {
         setTipoTitulo(tipoTitulo);
         setNome(nome);
-        setDataCadastro(dataCadastro);
-        setDataVencimento(dataVencimento);
+        setJdcDataCadastro(dataCadastro);
+        setJdcDataVencimento(dataVencimento);
         setNumeroParcelas(numeroParcelas);
         setValor(valor);
         setJurosDia(juros);

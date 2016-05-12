@@ -5,28 +5,54 @@
  */
 package visao;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import modelo.MUsuario;
+
 /**
  *
  * @author Bruno
  */
 public class VUsuarioLogado extends javax.swing.JFrame {
+
     VCadastroConta cadastro = new VCadastroConta();
     VEditar cadastroUsu = new VEditar();
+    MUsuario usuario = MUsuario.getInstance();
+
+       
+        String salliquido = Double.toString(usuario.getSalarioMensal());
+       
+    public void setSalLiq(String salliqui) {
+        this.lblSalLiq.setText(salliqui);
+    }
+
+    public String getSalLiq() {
+        return lblSalLiq.getText();
+    }
+
+    public void setNomeUsuario(String nome){
+        this.lblNomeUsuario.setText(nome); 
+    }
+     public String getNOmeUsuario(){
+         return lblNomeUsuario.getText();
+     }
+    
+    
     
     public VUsuarioLogado() {
         initComponents();
-        btnEditarUsua.setVisible(false);
-        btnSair.setVisible(false);
-        
+      
     }
+    
+    
+    
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnEditarUsurio = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblNomeUsuario = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblContas = new javax.swing.JTable();
@@ -41,6 +67,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         lbl = new javax.swing.JLabel();
         lblSaldoFinal = new javax.swing.JLabel();
+        lblSalLiq = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
@@ -59,7 +86,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Nome do Usuario");
+        lblNomeUsuario.setText("Nome do Usuario");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -119,7 +146,6 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         lblsalarioBruto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblsalarioBruto.setText("00,00");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Debitos");
@@ -135,6 +161,8 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         lblSaldoFinal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblSaldoFinal.setText("00,00");
 
+        lblSalLiq.setText("0,0");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -142,7 +170,9 @@ public class VUsuarioLogado extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(16, 16, 16)
+                .addComponent(lblSalLiq, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblsalarioBruto)
                 .addGap(74, 74, 74)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,7 +203,8 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                         .addComponent(lblSaldoFinal))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(lblsalarioBruto)))
+                        .addComponent(lblsalarioBruto)
+                        .addComponent(lblSalLiq)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -211,7 +242,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEditarUsurio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,7 +254,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                                 .addComponent(btnSair)
                                 .addGap(208, 208, 208)
                                 .addComponent(jLabel2))
-                            .addComponent(jLabel1))
+                            .addComponent(lblNomeUsuario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,7 +269,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                             .addComponent(btnRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(33, 33, 33)
                             .addComponent(btnRelatorio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(128, 128, 128))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,7 +282,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(lblNomeUsuario)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnEditarUsua)
@@ -276,24 +307,27 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarUsurioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsurioActionPerformed
-        
+
         btnEditarUsua.setVisible(true);
         btnSair.setVisible(true);
     }//GEN-LAST:event_btnEditarUsurioActionPerformed
 
     private void btnCadastrarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTituloActionPerformed
-        cadastro.setTxtNumeroParcelas("");
+        String np = String.valueOf(0.00);
+        cadastro.setTxtNumeroParcelas(np);
         cadastro.setTxtNomeTitulo("");
-        cadastro.setTxtValorJuros("");
-        cadastro.setTxtValorTitulo("");
-        cadastro.setFtfDataCadastramento("");
-        cadastro.setFtfDataVencimento("");
+        String vj = String.valueOf(0.00);
+        cadastro.setTxtValorJuros(vj);
+        String vt = String.valueOf(0.00);
+        cadastro.setTxtValorTitulo(vt);
+        cadastro.setJdcDataCadastramento("");
+        cadastro.setJdcDataVencimento("");
         cadastro.setVisible(true);
         //mudaOpacidade(true);
     }//GEN-LAST:event_btnCadastrarTituloActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnEditarUsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuaActionPerformed
@@ -307,7 +341,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         //mudaOpacidade(true);
     }//GEN-LAST:event_btnEditarUsuaActionPerformed
     //muda opacidade REVER CODIGO DE OPACIDADE
-    public void mudaOpacidade(boolean opacidade){
+    public void mudaOpacidade(boolean opacidade) {
         this.setOpacity(0.5f);
         this.setEnabled(false);
         tblContas.setEnabled(false);
@@ -318,16 +352,6 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         btnRelatorio.setOpaque(opacidade);
         btnCadastrarTitulo.setOpaque(opacidade);
     }
-    
-    
-    
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        
-       
-       //criar metodo para controlar opacidade dos forms
-        
-        
-    }                                            
 
     /**
      * @param args the command line arguments
@@ -361,12 +385,6 @@ public class VUsuarioLogado extends javax.swing.JFrame {
             @Override
             public void run() {
                 new VUsuarioLogado().setVisible(true);
-               
-                
-                
-                
-                
-                
                 
                 
             }
@@ -382,7 +400,6 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     private javax.swing.JButton btnRelatorio;
     private javax.swing.JButton btnRelatorio1;
     private javax.swing.JButton btnSair;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -394,6 +411,8 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbl;
     private javax.swing.JLabel lblDebito;
+    private javax.swing.JLabel lblNomeUsuario;
+    private javax.swing.JLabel lblSalLiq;
     private javax.swing.JLabel lblSaldoFinal;
     private javax.swing.JLabel lblsalarioBruto;
     private javax.swing.JTable tblContas;
