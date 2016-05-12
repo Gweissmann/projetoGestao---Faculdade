@@ -69,19 +69,19 @@ public class VCadastroConta extends javax.swing.JFrame {
     }
 
     public String getJdcDatacadastramento() {
-        return jdcDataCadastramento.getDate().toLocaleString();
+        return jDataCadastramento.getDate().toLocaleString();
     }
 
     public void setJdcDataCadastramento(String jdcDataCadastramento) {
-        this.jdcDataCadastramento.setDate(null);
+        this.jDataCadastramento.setDate(null);
     }
 
     public String getJdcDataVencimento() {
-        return jdcDataVencimento.getDate().toLocaleString();
+        return jDataVencimento.getDate().toLocaleString();
     }
 
     public void setJdcDataVencimento(String jdcDataVencimento) {
-        this.jdcDataVencimento.setDate(null);
+        this.jDataVencimento.setDate(null);
     }
 
     public void setValues() {
@@ -120,6 +120,8 @@ public class VCadastroConta extends javax.swing.JFrame {
         txtNumeroParcelas = new javax.swing.JTextField();
         cbTipoConta = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        jDataCadastramento = new com.toedter.calendar.JDateChooser();
+        jDataVencimento = new com.toedter.calendar.JDateChooser();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
@@ -194,9 +196,13 @@ public class VCadastroConta extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(txtValorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel4)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(95, 95, 95)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -231,7 +237,11 @@ public class VCadastroConta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("Cancelar");
@@ -308,8 +318,8 @@ public class VCadastroConta extends javax.swing.JFrame {
             valorTitulo = Double.parseDouble(getTxtValorTitulo());
             valorJuros = Double.parseDouble(getTxtValorJuros());
             numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
-            dataCadastro = df.format(jdcDataCadastramento.getDate());
-            dataVencimento = df.format(jdcDataVencimento.getDate());
+            dataCadastro = df.format(jDataCadastramento.getDate());
+            dataVencimento = df.format(jDataVencimento.getDate());
 
             setValues();
             adicionaConta.adicionarConta(conta);
@@ -366,6 +376,8 @@ public class VCadastroConta extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> cbTipoConta;
+    private com.toedter.calendar.JDateChooser jDataCadastramento;
+    private com.toedter.calendar.JDateChooser jDataVencimento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
