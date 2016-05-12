@@ -118,10 +118,8 @@ public class VCadastroConta extends javax.swing.JFrame {
         txtValorJuros = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtNumeroParcelas = new javax.swing.JTextField();
-        cbTipoConta = new javax.swing.JComboBox<String>();
+        cbTipoConta = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jdcDataVencimento = new com.toedter.calendar.JDateChooser();
-        jdcDataCadastramento = new com.toedter.calendar.JDateChooser();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
@@ -153,7 +151,7 @@ public class VCadastroConta extends javax.swing.JFrame {
 
         jLabel6.setText("Numero de parcelas");
 
-        cbTipoConta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Boleto", "Carnê", "Item 3", "Item 4" }));
+        cbTipoConta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boleto", "Carnê", "Item 3", "Item 4" }));
         cbTipoConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoContaActionPerformed(evt);
@@ -196,13 +194,9 @@ public class VCadastroConta extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(txtValorTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jdcDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2)
                                 .addGap(44, 44, 44)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(jLabel4)))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -235,15 +229,9 @@ public class VCadastroConta extends javax.swing.JFrame {
                         .addComponent(txtNumeroParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdcDataCadastramento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("Cancelar");
@@ -386,8 +374,6 @@ public class VCadastroConta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private com.toedter.calendar.JDateChooser jdcDataCadastramento;
-    private com.toedter.calendar.JDateChooser jdcDataVencimento;
     private javax.swing.JTextField txtNomeTitulo;
     private javax.swing.JTextField txtNumeroParcelas;
     private javax.swing.JTextField txtValorJuros;
