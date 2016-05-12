@@ -50,6 +50,29 @@ public class ControlaUsuario {
             }
         }
     }
+    
+    
+    //pega parametro do usuario
+    public void getUserParameters(String email) throws SQLException {
+        criarConexao();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM usuario WHERE email='" + email + "'");
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                MUsuario usuario = MUsuario.getInstance();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setRendaExtra(rs.getDouble("rendaExtra"));
+                usuario.setSalarioMensal(rs.getDouble("salarioMensal"));
+                usuario.setNome(rs.getString("nome"));
+            }
+        } catch (Exception e) {
+            if (stmt != null) {
+                stmt.close();
+            }
+            e.printStackTrace();
+        }
+    }
 
     public boolean getLogin(String email, String senha) throws SQLException {
         boolean senhaIgual = false;
@@ -65,6 +88,7 @@ public class ControlaUsuario {
 
                 if (senha.compareTo(senhaPara) == 0) {
                     senhaIgual = true;
+                    getUserParameters(email);
 
                 } else {
                     senhaIgual = false;
