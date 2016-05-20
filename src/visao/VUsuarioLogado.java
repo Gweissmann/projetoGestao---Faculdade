@@ -161,6 +161,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
         lblSaldoFinal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblSaldoFinal.setText("00,00");
 
+        lblSalLiq.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblSalLiq.setText("0,0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -313,7 +314,7 @@ public class VUsuarioLogado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarUsurioActionPerformed
 
     private void btnCadastrarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTituloActionPerformed
-        String np = String.valueOf(0.00);
+        String np = String.valueOf(0);
         cadastro.setTxtNumeroParcelas(np);
         cadastro.setTxtNomeTitulo("");
         String vj = String.valueOf(0.00);
