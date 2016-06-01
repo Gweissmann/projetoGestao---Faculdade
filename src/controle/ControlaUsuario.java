@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import modelo.MUsuario;
 
 /**
@@ -18,53 +19,71 @@ import modelo.MUsuario;
  */
 public class ControlaUsuario {
 
-    Connection con;
-
-    public void criarConexao() {
-        try {
-            con = ClasseConexao.getConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    ConectaBanco conexao = new ConectaBanco();
+    MUsuario usuario = MUsuario.getInstance();
 
     public void adicionarUsuario() throws SQLException {
-        MUsuario usuario = MUsuario.getInstance();
-        criarConexao();
-        if (con != null) {
-            PreparedStatement insere = con.prepareStatement("insert into usuario(nome,email,senha,salarioMensal,rendaExtra) values (?,?,?,?,?)");
-            //alimenta metodo de inserir usuario
+        
+        conexao.conexao();
+
+        try {
+            PreparedStatement insere = conexao.conn.prepareStatement("insert into usuario(nome,email,senha,salarioMensal,rendaExtra) values (?,?,?,?,?)"); //alimenta metodo de inserir usuario
             insere.setString(1, usuario.getNome());
             insere.setString(2, usuario.getEmail());
             insere.setString(3, usuario.getSenha());
             insere.setDouble(4, usuario.getSalarioMensal());
             insere.setDouble(5, usuario.getRendaExtra());
-            try {
 
-                insere.execute();
-                insere.close();
-                con.close();
+            insere.executeUpdate();
+            insere.close();
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro na Inserção \n Erro:" + ex);
+
         }
+
     }
     
     
-    //pega parametro do usuario
+    public void UpdateUsuario(String email) throws SQLException {
+        
+        conexao.conexao();
+
+        try {
+            PreparedStatement update = conexao.conn.prepareStatement("UPDATE usuario SET nome=?, senha=?, salarioMensal=?, rendaExtra=?  WHERE email='" + email + "'"); //Faz a atualização do usuario logado
+            update.setString(1, usuario.getNome());
+            update.setString(3, usuario.getSenha());
+            update.setDouble(4, usuario.getSalarioMensal());
+            update.setDouble(5, usuario.getRendaExtra());
+
+            update.executeUpdate();
+            update.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro na Inserção \n Erro:" + ex);
+
+        }
+
+    }
+    
+
+//pega parametro do usuario
     public void getUserParameters(String email) throws SQLException {
-        criarConexao();
+       
+        conexao.conexao();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM usuario WHERE email='" + email + "'");
+            stmt = conexao.conn.prepareStatement("SELECT * FROM usuario WHERE email='" + email + "'");
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                MUsuario usuario = MUsuario.getInstance();
+
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
-                usuario.setRendaExtra(rs.getDouble("rendaExtra"));
-                usuario.setSalarioMensal(rs.getDouble("salarioMensal"));
+                usuario.setEmail(rs.getString("email"));
                 usuario.setNome(rs.getString("nome"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setSalarioMensal(rs.getDouble("salarioMensal"));
+                usuario.setRendaExtra(rs.getDouble("rendaExtra"));
+
             }
         } catch (Exception e) {
             if (stmt != null) {
@@ -75,15 +94,16 @@ public class ControlaUsuario {
     }
 
     public boolean getLogin(String email, String senha) throws SQLException {
+        conexao.conexao();
         boolean senhaIgual = false;
-        criarConexao();
+
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM usuario WHERE email='" + email + "'");
+            stmt = conexao.conn.prepareStatement("SELECT * FROM usuario WHERE email='" + email + "'");
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 String senhaPara = rs.getString("senha");
-                MUsuario usuario = MUsuario.getInstance();
+               
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
 
                 if (senha.compareTo(senhaPara) == 0) {

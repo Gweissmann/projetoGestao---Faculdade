@@ -6,10 +6,13 @@
 package visao;
 
 import controle.ControlaUsuario;
+import controle.ConectaBanco;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,20 +25,51 @@ import sun.security.jca.GetInstance;
  */
 public class VLogin extends javax.swing.JFrame {
 
+    ConectaBanco conexao = new ConectaBanco();
+
     VCadastramento cadastroUsuario = new VCadastramento();
-    VUsuarioLogado usuariolLogado = new VUsuarioLogado();
+    VMain usuariolLogado = new VMain();
     ControlaUsuario controlausuario = new ControlaUsuario();
     MUsuario usuario = MUsuario.getInstance();
 
     public void setLabelFromUserLogged() {
-        String salliquido = Double.toString(usuario.getSalarioMensal());
+        String salliquido = Double.toString(usuario.getSalarioMensal() + usuario.getRendaExtra());
         usuariolLogado.setNomeUsuario(usuario.getNome());
         usuariolLogado.setSalLiq(salliquido);
+       
 
+    }
+
+    public void somaLabel() {
+        try {
+            conexao.executaSQL("SELECT SUM(valor) FROM cadastroconta");
+
+            conexao.rs.next();
+            String sum = conexao.rs.getString(1);
+          
+            usuariolLogado.setDebito(sum);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro na Inserção \n Erro:" + ex);
+        }
+        
+    }
+    
+    public void saldoFinal(){
+        Double salliq =  Double.parseDouble(usuariolLogado.getSalLiq());
+        Double debito =  Double.parseDouble(usuariolLogado.getLblDebito());
+    
+        Double saldofinal = salliq - debito;
+        
+        String saldofinalstring = Double.toString(saldofinal);
+        
+        usuariolLogado.setLblSaldoFinal(saldofinalstring);
     }
 
     public VLogin() {
         initComponents();
+        conexao.conexao();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -45,10 +79,10 @@ public class VLogin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         txtLogin = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtSenha = new javax.swing.JPasswordField();
         lblCadastro = new javax.swing.JLabel();
         lblRecuperaSenha = new javax.swing.JLabel();
 
@@ -59,12 +93,6 @@ public class VLogin extends javax.swing.JFrame {
         jPanel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setText("Login:");
-
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Senha:");
 
@@ -89,18 +117,21 @@ public class VLogin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLogin)
                     .addComponent(txtSenha)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(txtLogin)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,9 +142,9 @@ public class VLogin extends javax.swing.JFrame {
                 .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -165,22 +196,22 @@ public class VLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaActionPerformed
-
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         String email = txtLogin.getText();
         String senha = txtSenha.getText();
 
         try {
             if (controlausuario.getLogin(email, senha) == true) {
+
                 usuariolLogado.setVisible(true);
                 setLabelFromUserLogged();
+                somaLabel();
+                saldoFinal();
+                
                 this.setVisible(false);
 
             } else {
-                JOptionPane.showMessageDialog(null, "senha ou email incorreto." + " " + "Cadastre-se para acessar");
+                JOptionPane.showMessageDialog(null, "Senha ou Email Incorreto.\nCadastre-se para acessar");
             }
 
         } catch (SQLException ex) {
@@ -195,7 +226,6 @@ public class VLogin extends javax.swing.JFrame {
         cadastroUsuario.setTxtSenha("");
         cadastroUsuario.setTxtConfirmarSenha("");
         cadastroUsuario.setVisible(true);
-        cadastroUsuario.setSenhaIncorreta(false);
         cadastroUsuario.setTxtSalarioMensal("");
         cadastroUsuario.setTxtRendaExtra("");
         cadastroUsuario.setTxtConfirmarSenha("");
@@ -225,6 +255,6 @@ public class VLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblRecuperaSenha;
     private javax.swing.JTextField txtLogin;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

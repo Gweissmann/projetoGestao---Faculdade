@@ -1,24 +1,25 @@
 package visao;
 
+import controle.ConectaBanco;
 import controle.ControlaContas;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import modelo.MConta;
-import modelo.MUsuario;
+import modelo.MTabela;
 
 public class VCadastroConta extends javax.swing.JFrame {
 
     MConta conta = new MConta();
     ControlaContas adicionaConta = new ControlaContas();
+    ConectaBanco conexao = new ConectaBanco();
+    
+    
+    
 
     String nome;
     String tipoConta;
@@ -98,6 +99,48 @@ public class VCadastroConta extends javax.swing.JFrame {
         initComponents();
     }
 
+    public boolean validacao() {
+
+        if (getTxtNomeTitulo() == null || getTxtNomeTitulo().isEmpty() || "0".equals(getTxtNomeTitulo())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Nome da Conta para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtNomeTitulo.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtValorTitulo() == null || getTxtValorTitulo().isEmpty() || "0".equals(getTxtValorTitulo())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Valor do Título para continuar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtValorTitulo.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtValorJuros() == null || getTxtValorJuros().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o Valor do Juros para continuar. Caso não tenha coloque 0", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtValorJuros.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtNumeroParcelas() == null || getTxtNumeroParcelas().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o Numero de Parcelas para continuar. Caso não tenha coloque 0 ", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtNumeroParcelas.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getJdcDatacadastramento() == null || getJdcDatacadastramento().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o Data de Cadastramento para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            jDataCadastramento.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getJdcDataVencimento() == null || getJdcDataVencimento().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a Data de Vencimento para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            jDataVencimento.requestFocus();
+            this.setVisible(true);
+        }
+
+        return true;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -308,30 +351,34 @@ public class VCadastroConta extends javax.swing.JFrame {
 
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        if (validacao()) {
+            try {
+                //objeto df configura data para a data desejada
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-        try {
-            //objeto df configura data para a data desejada
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                
+                nome = txtNomeTitulo.getText();
+                tipoConta = cbTipoConta.getSelectedItem().toString();
+                valorTitulo = Double.parseDouble(getTxtValorTitulo());
+                valorJuros = Double.parseDouble(getTxtValorJuros());
+                numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
+                dataCadastro = df.format(jDataCadastramento.getDate());
+                dataVencimento = df.format(jDataVencimento.getDate());
 
-            //Falta pegar valores da combobox
-            nome = txtNomeTitulo.getText();
-            tipoConta = cbTipoConta.getSelectedItem().toString();
-            valorTitulo = Double.parseDouble(getTxtValorTitulo());
-            valorJuros = Double.parseDouble(getTxtValorJuros());
-            numeroParcelas = Integer.parseInt(getTxtNumeroParcelas());
-            dataCadastro = df.format(jDataCadastramento.getDate());
-            dataVencimento = df.format(jDataVencimento.getDate());
+                setValues();
+                adicionaConta.adicionarConta(conta);
+                JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                this.setVisible(false);
+                
+                
 
-            setValues();
-            adicionaConta.adicionarConta(conta);
-            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.");
-            this.setVisible(false);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(VCadastroConta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(VCadastroConta.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
-
+        
+        
+       
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtValorJurosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorJurosActionPerformed

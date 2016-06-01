@@ -8,7 +8,9 @@ package controle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import modelo.MConta;
+import modelo.MTabela;
 import modelo.MUsuario;
 
 /**
@@ -17,23 +19,13 @@ import modelo.MUsuario;
  */
 public class ControlaContas {
 
-    // adicionar inserts delets e atualization 
-    Connection con;
-
-    public void criarConexao() {
-        try {
-            con = ClasseConexao.getConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    ConectaBanco conexao = new ConectaBanco();
 
     public void adicionarConta(MConta conta) throws SQLException {
         MUsuario usuario = MUsuario.getInstance();
-
-        criarConexao();
-        if (con != null) {
-            PreparedStatement insere = con.prepareStatement("insert into cadastroConta(tipoTitulo,nome,DataCadastro,DataVencimento,numeroParcelas,valor,idCliente,juros) values (?,?,?,?,?,?,?,?)");
+        conexao.conexao();
+        try {
+            PreparedStatement insere = conexao.conn.prepareStatement("insert into cadastroConta(tipoTitulo,nome,DataCadastro,DataVencimento,numeroParcelas,valor,idCliente,juros) values (?,?,?,?,?,?,?,?)");
             //alimenta metodo de inserir conta
             insere.setString(1, conta.getTipoTitulo());
             insere.setString(2, conta.getNome());
@@ -43,16 +35,12 @@ public class ControlaContas {
             insere.setDouble(6, conta.getValor());
             insere.setInt(7, usuario.getIdUsuario());
             insere.setDouble(8, conta.getJurosDia());
-            try {
 
-                insere.execute();
-                insere.close();
-                con.close();
+            insere.executeUpdate();
+            insere.close();
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro na Inserção \n Erro:" + ex);
         }
     }
-
 }

@@ -100,11 +100,20 @@ public class MUsuario {
         setSalarioMensal(salarioMensal);
         setRendaExtra(rendaExtra);
     }
+    
+    public void updateUsuario(String nome, String senha, double salarioMensal, double rendaExtra) {
+        setNome(nome);
+        setSenha(senha);
+        setSalarioMensal(salarioMensal);
+        setRendaExtra(rendaExtra);
+    }
 
     public void getlogin(String email, String senha) {
         setEmail(email);
         setSenha(senha);
 
     }
+    
+    
 
 }

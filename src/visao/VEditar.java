@@ -5,6 +5,12 @@
  */
 package visao;
 
+import com.mysql.jdbc.Statement;
+import controle.ConectaBanco;
+import controle.ControlaUsuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -16,58 +22,144 @@ import modelo.MUsuario;
  */
 public class VEditar extends javax.swing.JFrame {
 
-    MUsuario Usuario = MUsuario.getInstance();
+    MUsuario usuario = MUsuario.getInstance();
 
-    public JTextField getTxtConfirmarSenha() {
-        return txtConfirmarSenha;
+    ConectaBanco conexao = new ConectaBanco();
+    ControlaUsuario cadastraUsuario = new ControlaUsuario();
+
+    public String getTxtConfirmarSenha() {
+        return txtConfirmarSenha.getText();
     }
 
     public void setTxtConfirmarSenha(String txtConfirmarSenha) {
         this.txtConfirmarSenha.setText(txtConfirmarSenha);
     }
 
-    public JTextField getTxtEmail() {
-        return txtEmail;
+    public String getTxtEmail() {
+        return txtEmail.getText();
     }
 
     public void setTxtEmail(String txtEmail) {
         this.txtEmail.setText(txtEmail);
     }
 
-    public JTextField getTxtNomeUsuario() {
-        return txtNomeUsuario;
+    public String getTxtNomeUsuario() {
+        return txtNomeUsuario.getText();
     }
 
     public void setTxtNomeUsuario(String txtNomeUsuario) {
         this.txtNomeUsuario.setText(txtNomeUsuario);
     }
 
-    public JTextField getTxtSenha() {
-        return txtSenha;
+    public String getTxtSenha() {
+        return txtSenha.getText();
     }
 
     public void setTxtSenha(String txtSenha) {
         this.txtSenha.setText(txtSenha);
     }
 
-    public void getTxtSalarioMensal() {
-        //return txtSalarioMensal;
+    public String getTxtSalarioMensal() {
+        return txtSalarioMensal.getText();
     }
 
     public void setTxtSalarioMensal(String txtSalariomensal) {
         this.txtSalarioMensal.setText(txtSalariomensal);
     }
 
-    public void getTxtRendaExtra() {
-        //return txtRendaExtra;
+    public String getTxtRendaExtra() {
+        return txtRendaExtra.getText();
     }
 
     public void setTxtRendaExtra(String txtRendaExtra) {
         this.txtRendaExtra.setText(txtRendaExtra);
     }
 
+    public void pegaDados(String email) throws SQLException {
+        conexao.conexao();
+
+        if (conexao.conn != null) {
+
+            try {
+
+                conexao.executaSQL("SELECT * FROM usuario WHERE email='" + email + "'");
+
+                while (conexao.rs.next()) {
+
+                    setTxtNomeUsuario(conexao.rs.getString("nome"));
+                    setTxtSenha(conexao.rs.getString("senha"));
+                    String sm = String.valueOf(conexao.rs.getString("salarioMensal"));
+                    setTxtSalarioMensal(sm);
+                    String re = String.valueOf(conexao.rs.getString("rendaExtra"));
+                    setTxtRendaExtra(re);
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Erro na Inserção \n Erro:" + ex);
+            }
+        }
+    }
+
+    public boolean validacao() {
+
+        if (getTxtNomeUsuario() == null || getTxtNomeUsuario().isEmpty() || "0".equals(getTxtNomeUsuario())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Nome de Usuario para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtNomeUsuario.requestFocus();
+            this.setVisible(true);
+        }
+        /*
+         if (getTxtEmail() == null || getTxtEmail().isEmpty() || "0".equals(getTxtEmail())) {
+         JOptionPane.showMessageDialog(null, "Preencha o Email para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+         txtEmail.requestFocus();
+         this.setVisible(true);
+         }
+         */
+        
+        if (getTxtSenha() == null || getTxtSenha().isEmpty() || "0".equals(getTxtSenha())) {
+            JOptionPane.showMessageDialog(null, "Preencha a Senha para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtConfirmarSenha() == null || getTxtConfirmarSenha().isEmpty() || "0".equals(getTxtConfirmarSenha())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Confirmação de Senha para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtSalarioMensal() == null || getTxtSalarioMensal().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o Salario Mensal para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtRendaExtra() == null || getTxtRendaExtra().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a Renda Extra para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            this.setVisible(true);
+        }
+
+        return true;
+    }
+
+    public boolean validacaoSenha() {
+        String senha = txtSenha.getText();
+        int comp = senha.compareTo(txtConfirmarSenha.getText());
+
+        if (comp == 0) {
+            usuario.setSenha(txtSenha.getText());
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Senha Incorreta", "Aviso", JOptionPane.WARNING_MESSAGE);
+            this.setVisible(true);
+            return false;
+        }
+
+    }
+
     public VEditar() {
         initComponents();
+        txtEmail.setEnabled(false);
 
     }
 
@@ -125,23 +217,28 @@ public class VEditar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(txtEmail)
-                    .addComponent(txtNomeUsuario)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtSalarioMensal))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4)
-                            .addComponent(txtConfirmarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRendaExtra))))
-                .addGap(55, 55, 55))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNomeUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtSalarioMensal))
+                                .addGap(65, 65, 65)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtRendaExtra, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(txtConfirmarSenha)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(40, 40, 40))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,16 +290,16 @@ public class VEditar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(52, 52, 52)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(68, 68, 68))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,8 +308,8 @@ public class VEditar extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
@@ -225,22 +322,47 @@ public class VEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeUsuarioActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        //verificaçao de senha
 
-        String senha = txtSenha.getText();
-        int comp = senha.compareTo(txtConfirmarSenha.getText());
+        if (validacao() && validacaoSenha()) {
+            double salarioMensal = Double.parseDouble(getTxtSalarioMensal());
+            double rendaExtra = Double.parseDouble(getTxtRendaExtra());
 
-        if (comp == 0) {
+            usuario.updateUsuario(getTxtNomeUsuario(), getTxtSenha(), salarioMensal, rendaExtra);
 
-            Usuario.setSenha(txtSenha.getText());
-            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            this.setVisible(true);
+            try {
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Senha Incorreta", "Aviso", JOptionPane.WARNING_MESSAGE);
-            this.setVisible(false);
+                String senha = txtSenha.getText();
 
+                int comp = senha.compareTo(txtConfirmarSenha.getText());
+
+                if (comp == 0) {
+                    cadastraUsuario.UpdateUsuario(usuario.getEmail());
+                    JOptionPane.showMessageDialog(null, "Editado com Sucesso.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    this.setVisible(false);
+                } else {
+                    this.setVisible(true);
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro na Edição \n Erro:" + ex);
+            }
         }
+        /*
+         String senha = txtSenha.getText();
+         int comp = senha.compareTo(txtConfirmarSenha.getText());
+
+         if (comp == 0) {
+
+         usuario.setSenha(txtSenha.getText());
+         JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+         this.setVisible(true);
+
+         } else {
+         JOptionPane.showMessageDialog(null, "Senha Incorreta", "Aviso", JOptionPane.WARNING_MESSAGE);
+         this.setVisible(false);
+
+         }
+         */
 
 
     }//GEN-LAST:event_btnEditarActionPerformed

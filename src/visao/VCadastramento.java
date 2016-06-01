@@ -6,6 +6,7 @@
 package visao;
 
 import controle.ControlaUsuario;
+import controle.ConectaBanco;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ public class VCadastramento extends javax.swing.JFrame {
 
     ControlaUsuario cadastraUsuario = new ControlaUsuario();
     MUsuario Usuario = MUsuario.getInstance();
+    ConectaBanco conexao = new ConectaBanco();
 
     public String getTxtConfirmarSenha() {
         return txtConfirmarSenha.getText();
@@ -74,42 +76,64 @@ public class VCadastramento extends javax.swing.JFrame {
 
     public VCadastramento() {
         initComponents();
+        conexao.conexao();
+
     }
 
-    public void validacao() {
-        if (getTxtNomeUsuario() == null || getTxtNomeUsuario().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o Nome de Usuario para continuar");
+    public boolean validacao() {
+
+        if (getTxtNomeUsuario() == null || getTxtNomeUsuario().isEmpty() || "0".equals(getTxtNomeUsuario())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Nome de Usuario para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtNomeUsuario.requestFocus();
             this.setVisible(true);
         }
 
-        if (getTxtEmail() == null || getTxtEmail().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o Email para continuar");
+        if (getTxtEmail() == null || getTxtEmail().isEmpty() || "0".equals(getTxtEmail())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Email para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtSenha() == null || getTxtSenha().isEmpty() || "0".equals(getTxtSenha())) {
+            JOptionPane.showMessageDialog(null, "Preencha a Senha para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtConfirmarSenha() == null || getTxtConfirmarSenha().isEmpty() || "0".equals(getTxtConfirmarSenha())) {
+            JOptionPane.showMessageDialog(null, "Preencha o Confirmação de Senha para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            this.setVisible(true);
+        }
+
+        if (getTxtSalarioMensal() == null || getTxtSalarioMensal().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o Salario Mensal para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtEmail.requestFocus();
             this.setVisible(true);
         }
 
         if (getTxtRendaExtra() == null || getTxtRendaExtra().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha a Renda Extra para continuar");
-            txtEmail.requestFocus();
-            this.setVisible(true);
-        }
-        if (getTxtSalarioMensal() == null || getTxtSalarioMensal().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o Salario Mensal para continuar");
-            txtEmail.requestFocus();
-            this.setVisible(true);
-        }
-        if (getTxtSenha() == null || getTxtSenha().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha a Senha para continuar");
+            JOptionPane.showMessageDialog(null, "Preencha a Renda Extra para continuar", "Aviso", JOptionPane.WARNING_MESSAGE);
             txtEmail.requestFocus();
             this.setVisible(true);
         }
 
-        if (getTxtConfirmarSenha() == null || getTxtConfirmarSenha().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preencha o Confirmação de Senha para continuar");
-            txtEmail.requestFocus();
+        return true;
+    }
+
+    public boolean validacaoSenha() {
+        String senha = txtSenha.getText();
+        int comp = senha.compareTo(txtConfirmarSenha.getText());
+
+        if (comp == 0) {
+            Usuario.setSenha(txtSenha.getText());
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Senha Incorreta", "Aviso", JOptionPane.WARNING_MESSAGE);
             this.setVisible(true);
+            return false;
         }
+
     }
 
     /**
@@ -273,37 +297,33 @@ public class VCadastramento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        if (validacao() && validacaoSenha()) {
+            
+            double salarioMensal = Double.parseDouble(getTxtSalarioMensal());
+            double rendaExtra = Double.parseDouble(getTxtRendaExtra());
 
-        double salarioMensal = Double.parseDouble(getTxtSalarioMensal());
-        double rendaExtra = Double.parseDouble(getTxtRendaExtra());
+            Usuario.cadastroUsuario(getTxtNomeUsuario(), getTxtEmail(), getTxtSenha(), salarioMensal, rendaExtra);
 
-        Usuario.cadastroUsuario(getTxtNomeUsuario(), getTxtEmail(), getTxtSenha(), salarioMensal, rendaExtra);
+            try {
 
-        try {
+                String senha = txtSenha.getText();
+                //JOptionPane.showMessageDialog(null,senha);
+                int comp = senha.compareTo(txtConfirmarSenha.getText());
 
-            String senha = txtSenha.getText();
-            //JOptionPane.showMessageDialog(null,senha);
-            int comp = senha.compareTo(txtConfirmarSenha.getText());
+                if (comp == 0) {
+                    cadastraUsuario.adicionarUsuario();
+                    JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    this.setVisible(false);
+                } else {
+                    // lblSenhaIncorreta.setVisible(true);
+                    this.setVisible(true);
+                }
 
-            if (comp == 0) {
-                cadastraUsuario.adicionarUsuario();
-                Usuario.setSenha(txtSenha.getText());
-                //lblSenhaIncorreta.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(true);
-            } else {
-                // lblSenhaIncorreta.setVisible(true);
-                JOptionPane.showMessageDialog(null, "Senha Incorreta", "Aviso", JOptionPane.WARNING_MESSAGE);
-                this.setVisible(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(VCadastramento.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(VCadastramento.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
